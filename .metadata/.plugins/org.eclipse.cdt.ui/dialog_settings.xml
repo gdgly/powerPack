@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.cdt.ui.OPEN_ACTION_SELECTION_DIALOG_SECTION">
+		<item value="444" key="DIALOG_WIDTH"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="625" key="DIALOG_HEIGHT"/>
+		<item value="738" key="DIALOG_X_ORIGIN"/>
+		<item value="126" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
+	</section>
+	<section name="PDOMSearchPage">
+		<item value="false" key="caseSensitive"/>
+		<item value="227191" key="searchFlags"/>
+		<list key="previousPatterns">
+			<item value="load_scia_tx_mail_box_char"/>
+			<item value="monitor_proc"/>
+			<item value="GetInputMark"/>
+			<item value="MAIN_CHARGE_OFF"/>
+			<item value="ulGetTime_mSec"/>
+			<item value="ulGetNow_mSec"/>
+			<item value="OverCurLimit"/>
+			<item value="codeRateHz"/>
+			<item value="rmsIu"/>
+			<item value="lpfVdc"/>
+			<item value="EepromSaveFlag"/>
+			<item value="readAllCodes"/>
+			<item value="check_code_data"/>
+			<item value="get_command"/>
+			<item value="NUM_SCI_TX_BUF"/>
+			<item value="Freq_slip_rat"/>
+			<item value="del_Vs_comp"/>
+			<item value="Te_max"/>
+			<item value="we0"/>
+			<item value="CosDeltaTheta"/>
+			<item value="adcIgbtTemperature"/>
+			<item value="Freq_out"/>
+			<item value="Freq_ref"/>
+			<item value="inv_motor_rate_hz"/>
+		</list>
+	</section>
+	<section name="completion_proposal_size">
+	</section>
+</section>

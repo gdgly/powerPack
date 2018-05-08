@@ -1,0 +1,21 @@
+
+**** Build of configuration Debug for project powerPack ****
+
+/home/eunwho/ti/ccsv7/utils/bin/gmake -k all 
+Building file: ../code_group_all.c
+Invoking: C2000 Compiler
+"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="code_group_all.d"  "../code_group_all.c"
+"../code_group_all.c", line 923: warning: variable "temp_cmd" was set but
+          never used
+  	int temp_cmd;
+  	    ^
+
+Finished building: ../code_group_all.c
+ 
+Building target: powerPack.out
+Invoking: C2000 Linker
+"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet -z -m"powerPack.map" --heap_size=0x400 --stack_size=0x800 --warn_sections -i"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/lib" -i"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" -i"/home/eunwho/powerPack/libraries/math/IQmath/c28/lib" -i"/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/lib" -i"/home/eunwho/powerPack/f2806x/examples/c28/adc_soc" --priority --reread_libs --issue_remarks --verbose_diagnostics --xml_link_info="Example_2806xEPwmUpDownAQ_linkInfo.xml" --entry_point=code_start --rom_model -o "powerPack.out" -lrts2800_fpu32_fast_supplement.lib -lrts2800_fpu32.lib "./F2806x_Adc.obj" "./F2806x_CSMPasswords.obj" "./F2806x_CodeStartBranch.obj" "./F2806x_CpuTimers.obj" "./F2806x_DefaultIsr.obj" "./F2806x_GlobalVariableDefs.obj" "./F2806x_PieCtrl.obj" "./F2806x_PieVect.obj" "./F2806x_SysCtrl.obj" "./F2806x_usDelay.obj" "./ParameterSet.obj" "./RefFunc.obj" "./SL_Vect.obj" "./SVM.obj" "./Set_Par.obj" "./analog.obj" "./auto_tuning.obj" "./code_group_all.obj" "./code_proc.obj" "./common_module.obj" "./digital_inout.obj" "./f28069GpioSetup.obj" "./hyd_unit.obj" "./low_pass_filter.obj" "./main.obj" "./scia.obj" "./serial_com.obj" "./set_dac_point.obj" "./switchingIrq.obj" "./test_run.obj" "./trip_proc.obj" "./udd_eeprom.obj" "./udd_timer_irq.obj" "./vector_control.obj" "./vf_contol.obj" "../F28069_eunwho.cmd" "/home/eunwho/powerPack/f2806x/headers/cmd/F2806x_Headers_nonBIOS.cmd"  -lIQmath_fpu32.lib 
+Finished building target: powerPack.out
+ 
+
+**** Build Finished ****

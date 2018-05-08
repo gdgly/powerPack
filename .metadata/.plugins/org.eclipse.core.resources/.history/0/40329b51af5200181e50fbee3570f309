@@ -1,0 +1,279 @@
+#include	<header.h>
+#include	<extern.h>
+
+void set_digit_input_funtion(int , int function_option );
+void digit_run_dir_chk( );
+
+double multi_step_proc( );
+void fault_reset(){	Nop();}
+void driver_enable_proc(){	Nop();}
+void input_ai_ref_active_proc(){	Nop();}
+void input_ai_local_remote_proc(){	Nop();}
+void input_ext_fault_b_proc(){	Nop();}
+void input_motor_select_proc(){	Nop();}
+void input_mb_brake_state_proc(){	Nop(); }
+void input_acel_decel_switch_proc(){	Nop();}
+void input_ref_tunning_inc_proc(){	Nop();}
+void input_ref_tunning_dec_proc(){	Nop();}
+void input_acc_dec_byp_proc(){	Nop();}
+
+void input_ext_fault_a_proc()
+{
+	trip_recording( TRIP_EXT_A, gfRunTime,"TRIP EXT A: runtime save");
+	gPWMTripCode = TRIP_EXT_A;
+}
+
+//=====================================
+//	
+//=====================================
+
+/*
+	8���� �Է¿� ���� ����� ó�� �Ѵ�. 
+	CMD_DI_NULL;		
+*/
+
+int input_state(int port)
+{
+/*
+    unsigned int xbus_in;
+	int i,j;
+
+	i = 1;
+	j = port;
+
+	while( j ){	i *= 2; j--; }
+	Nop();
+
+	xbus_in = ( ZONE0_BUF[0x0050] & i );   // debug
+	if( xbus_in ) 	return 1;
+	else 			return 0;
+*/
+}
+
+void set_digit_input_funtion( int input_state, int function_option )
+{
+
+	if(( function_option == 10 ) && ( input_state == 1 )) func_flag.bit.EXT_FAULT_A = 1;
+	if(( function_option == 11 ) && ( input_state == 1 )) func_flag.bit.EXT_FAULT_B = 1;
+
+	if( input_state == 0 )
+	{
+		switch( function_option ){
+		case 0:			break;
+		case 1:	func_flag.bit.DRIVE_ENABLE = 1;		break;
+		case 2:	func_flag.bit.MULTI_STEP_BIT0 = 1;	break;
+		case 3:	func_flag.bit.MULTI_STEP_BIT1 = 1;	break;
+		case 4:	func_flag.bit.MULTI_STEP_BIT2 = 1;	break;
+		case 5:	func_flag.bit.MULTI_STEP_BIT3 = 1;	break;
+		case 6:	func_flag.bit.FAULT_RESET = 1;		break;
+		case 7:	func_flag.bit.JOG = 1;				break;
+		case 8:	func_flag.bit.AI_REF_ACTIVE = 1;	break;
+		case 9:	func_flag.bit.AI_LOCAL_REMOTE = 1;	break;
+		
+		case 12: func_flag.bit.MOTOR_SELECT = 1;	break;
+		case 13: func_flag.bit.MB_BRAKE_STATE = 1;	break;
+		case 14: func_flag.bit.ACCEL_DECEL_SWITCH = 1; break;
+		case 15: func_flag.bit.REF_TUNING_INC = 1;	break;
+		case 16: func_flag.bit.REF_TUNING_DEC = 1;	break;
+		case 17: func_flag.bit.ACC_DEC_BYP = 1;		break;
+		case 18: func_flag.bit.PID_CNTL_ENABLE = 1;	break;
+		case 19: func_flag.bit.AUTO_PID_MODE = 1;	break;
+		case 20: func_flag.bit.PID_GAIN_SEL = 1;	break;
+		case 21: func_flag.bit.PID_I_RESET = 1;		break;
+		case 22: func_flag.bit.TRQ_REF_OPT_BYP = 1;	break;
+		case 23: func_flag.bit.TRQ_SIGN = 1;		break;
+		case 24: func_flag.bit.TRQ_OUT_ZERO = 1;	break;
+		case 25: func_flag.bit.TIMER_RUN_ENABLE = 1; break;
+		case 26: func_flag.bit.SLAVE_RUN_STATUS = 1; break;
+		case 27: func_flag.bit.SYNC_CTRL_OPT_BPY = 1; break;
+		case 28: func_flag.bit.FLYING_START = 1;  	break;
+		case 29: func_flag.bit.DISABLE_PROFIBUS = 1; break;
+		}
+	}
+}
+
+double multi_step_proc( )
+{
+	double temp = 0.0;
+	
+	if( use_binary_input ){	
+		if( func_flag.bit.MULTI_STEP_BIT0 == 1 ) temp += 1.0;
+		if( func_flag.bit.MULTI_STEP_BIT1 == 1 ) temp += 2.0;
+		if( func_flag.bit.MULTI_STEP_BIT2 == 1 ) temp += 4.0;
+		if( func_flag.bit.MULTI_STEP_BIT3 == 1 ) temp += 8.0;
+		
+		if( temp > 14.0) temp = digital_speed16;
+		else if( temp > 13.0) temp = digital_speed15;
+		else if( temp > 12.0) temp = digital_speed14;
+		else if( temp > 11.0) temp = digital_speed13;
+		else if( temp > 10.0) temp = digital_speed12;
+		else if( temp >  9.0) temp = digital_speed11;
+		else if( temp >  8.0) temp = digital_speed10;
+		else if( temp >  7.0) temp = digital_speed9;
+		else if( temp >  6.0) temp = digital_speed8;
+		else if( temp >  5.0) temp = digital_speed7;
+		else if( temp >  4.0) temp = digital_speed6;
+		else if( temp >  3.0) temp = digital_speed5;
+		else if( temp >  2.0) temp = digital_speed4;
+		else if( temp >  1.0) temp = digital_speed3;
+		else if( temp >  0.9) temp = digital_speed2;
+		else 				  temp = digital_speed1;
+	}
+	else{
+		if		( func_flag.bit.MULTI_STEP_BIT3 == 1 ) temp = digital_speed5;
+		else if ( func_flag.bit.MULTI_STEP_BIT2 == 1 ) temp = digital_speed4;
+		else if ( func_flag.bit.MULTI_STEP_BIT1 == 1 ) temp = digital_speed3;
+		else if ( func_flag.bit.MULTI_STEP_BIT0 == 1 ) temp = digital_speed2;
+		else 										   temp = digital_speed1;
+	}
+	return temp;
+}
+
+void digit_run_dir_chk( )
+{
+	int bit0_run_dir,bit1_run_dir;
+
+	bit0_run_dir = input_state(0);	// �Է��� �Ǹ� 1 
+	bit1_run_dir = input_state(1);	// digital input state check
+ 
+ // 
+	if( motor_direction_change == 0 ){			// FRW,REV ��� 
+		if ((bit0_run_dir == 1 ) && ( bit1_run_dir== 0)){
+			func_flag.bit.INVERT_RUN = 1;
+			func_flag.bit.INVERT_DIR = 0;
+		}
+		else if	 ((bit0_run_dir == 0 ) && ( bit1_run_dir== 1)){
+			func_flag.bit.INVERT_RUN = 1;
+			func_flag.bit.INVERT_DIR = 1;
+		}
+		else func_flag.bit.INVERT_RUN = 0;
+	}
+ 	else{ 
+		if (bit0_run_dir == 1 ){
+			func_flag.bit.INVERT_RUN = 1;
+			if (bit1_run_dir == 0) func_flag.bit.INVERT_DIR = 1;  // reverse run 
+			else 				   func_flag.bit.INVERT_DIR = 0;
+		}
+		else{
+			func_flag.bit.INVERT_RUN = 0;
+			func_flag.bit.INVERT_DIR = 0;
+		}
+	}
+}
+
+
+void digital_input_proc(int * cmd, double * ref )
+{
+
+	* cmd = CMD_NULL;
+
+	func_flag.all = 0;
+
+	set_digit_input_funtion(input_state(2),input_func_select2);
+	set_digit_input_funtion(input_state(3),input_func_select3);
+	set_digit_input_funtion(input_state(4),input_func_select4);
+	set_digit_input_funtion(input_state(5),input_func_select5);
+	set_digit_input_funtion(input_state(6),input_func_select6);
+	set_digit_input_funtion(input_state(7),input_func_select7);
+
+	digit_run_dir_chk( );				// run command and direction check	
+
+	* ref = multi_step_proc( );
+
+	if( func_flag.bit.JOG == 1 ) * ref = jog_speed; 
+
+	if( func_flag.bit.INVERT_DIR == 1) * ref = - (* ref);
+
+	if( func_flag.bit.INVERT_RUN == 1) 	* cmd = CMD_START;
+	else { * cmd = CMD_STOP; * ref = 0.0;}
+
+	if((gMachineState==STATE_TRIP)&&( func_flag.bit.FAULT_RESET==1)){
+	  	fault_reset();
+		* cmd = CMD_RESET;
+		* ref = 0.0;
+	}
+	if( func_flag.bit.DRIVE_ENABLE ) driver_enable_proc();
+
+	if( func_flag.bit.AI_REF_ACTIVE ) input_ai_ref_active_proc();
+
+	if( func_flag.bit.AI_LOCAL_REMOTE ) input_ai_local_remote_proc();
+
+	if( func_flag.bit.EXT_FAULT_A ) input_ext_fault_a_proc();	// jsk debug
+	if( func_flag.bit.EXT_FAULT_B ) input_ext_fault_b_proc();
+
+	if( func_flag.bit.MOTOR_SELECT ) input_motor_select_proc();
+	if( func_flag.bit.MB_BRAKE_STATE ) input_mb_brake_state_proc();
+	if( func_flag.bit.ACCEL_DECEL_SWITCH ) input_acel_decel_switch_proc();
+	if( func_flag.bit.REF_TUNING_INC ) input_ref_tunning_inc_proc();
+	if( func_flag.bit.REF_TUNING_DEC ) input_ref_tunning_dec_proc();
+	if( func_flag.bit.ACC_DEC_BYP) input_acc_dec_byp_proc();
+}
+
+//=====================
+// Digital Out Proc
+//======================
+
+int digital_port_check( int out_function )
+{
+	int i;
+
+	i = 0;
+	if	   ( ( relay_flag.bit.DRIVE_READY )	&&( out_function == 1 )) i =1;
+	else if( ( relay_flag.bit.FAULT_OUT_A ) &&( out_function == 2 )) i =1;
+	else if( ( relay_flag.bit.FAULT_OUT_B ) &&( out_function == 3 )) i =1;
+	else if( ( relay_flag.bit.MOTOR_BRAKE ) &&( out_function == 4 )) i =1;
+	else if( ( relay_flag.bit.RUN_STOP) 	&&( out_function == 5 )) i =1;
+	else if( ( relay_flag.bit.WARNING) 		&&( out_function == 6 )) i =1;
+	else if( ( relay_flag.bit.DIRECTION) 	&&( out_function == 7 )) i =1;
+	else if( ( relay_flag.bit.JOG_INPUT) 	&&( out_function == 8 )) i =1;
+	else if( ( relay_flag.bit.VC_LIMIT) 	&&( out_function == 9 )) i =1;
+	else if( ( relay_flag.bit.FREE) 		&&( out_function == 10)) i =1;
+	else															 i = 0;
+	
+	return i;
+}  	
+
+void digital_out_proc()		// debug
+{
+}
+/*
+void digital_out_proc_bk()
+{
+	int i;
+
+	i = digital_port_check( digital_out_function0 );
+	if( i ) digital_out0_on();
+	else 	digital_out0_off();
+
+	i = digital_port_check( digital_out_function1 );
+	if( i ) digital_out1_on();
+	else 	digital_out1_off();
+	 	
+	i = digital_port_check( digital_out_function2 );
+	if( i ) digital_out2_on();
+	else 	digital_out2_off();
+
+	i = digital_port_check( digital_out_function3 );
+	if( i ) digital_out3_on();
+	else 	digital_out3_off();
+
+	i = digital_port_check( digital_out_function4 );
+	if( i ) digital_out4_on();
+	else 	digital_out4_off();
+
+	i = digital_port_check( digital_out_function5 );
+	if( i ) digital_out5_on();
+	else 	digital_out5_off();
+
+	i = digital_port_check( digital_out_function6 );
+	if( i ) digital_out6_on();
+	else 	digital_out6_off();
+
+	i = digital_port_check( digital_out_function7 );
+	if( i ) digital_out7_on();
+	else 	digital_out7_off();
+}
+*/
+//---------------------------------
+// end of file
+//----------------------------------

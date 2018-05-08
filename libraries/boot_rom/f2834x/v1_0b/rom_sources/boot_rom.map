@@ -1,0 +1,700 @@
+******************************************************************************
+        TMS320C2000 COFF Linker PC v5.0.1                      
+******************************************************************************
+>> Linked Tue Jun 03 13:13:19 2008
+
+OUTPUT FILE NAME:   <./Debug/TMS320x2834x_boot_rom.out>
+ENTRY POINT SYMBOL: "_InitBoot"  address: 003ff9f9
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+PAGE 0:
+  IQTABLES              003fe000   00000b50  00000b50  00000000  RWIX
+  IQTABLES2             003feb50   0000008c  0000008c  00000000  RWIX
+  FPUTABLES             003febdc   000006a0  000006a0  00000000  RWIX
+  TI_PRPG               003ff27c   00000090  00000090  00000000  RWIX
+  TI_MISR               003ff30c   00000040  00000040  00000000  RWIX
+  BOOT                  003ff34c   000006da  000006da  00000000  RWIX
+  RSVD1                 003ffa26   00000594  00000594  00000000  RWIX
+  VERSION               003fffba   00000002  00000002  00000000  RWIX
+  CHECKSUM              003fffbc   00000004  00000004  00000000  RWIX
+  VECS                  003fffc0   00000040  00000040  00000000  RWIX
+
+PAGE 1:
+  EBSS                  00000002   00000004  00000004  00000000  RWIX
+  STACK                 00000006   00000200  00000200  00000000  RWIX
+  DEV_EMU               00000880   00000180  000000d0  000000b0  RWIX
+  XINTF                 00000b20   00000020  0000001e  00000002  RWIX
+  CPU_TIMER0            00000c00   00000008  00000008  00000000  RWIX
+  CPU_TIMER1            00000c08   00000008  00000008  00000000  RWIX
+  CPU_TIMER2            00000c10   00000008  00000008  00000000  RWIX
+  PIE_CTRL              00000ce0   00000020  0000001a  00000006  RWIX
+  PIE_VECT              00000d00   00000100  00000100  00000000  RWIX
+  DMA                   00001000   00000200  000000e0  00000120  RWIX
+  MCBSPA                00005000   00000040  00000025  0000001b  RWIX
+  MCBSPB                00005040   00000040  00000025  0000001b  RWIX
+  ECANA                 00006000   00000040  00000034  0000000c  RWIX
+  ECANA_LAM             00006040   00000040  00000040  00000000  RWIX
+  ECANA_MOTS            00006080   00000040  00000040  00000000  RWIX
+  ECANA_MOTO            000060c0   00000040  00000040  00000000  RWIX
+  ECANA_MBOX            00006100   00000100  00000100  00000000  RWIX
+  ECANB                 00006200   00000040  00000034  0000000c  RWIX
+  ECANB_LAM             00006240   00000040  00000040  00000000  RWIX
+  ECANB_MOTS            00006280   00000040  00000040  00000000  RWIX
+  ECANB_MOTO            000062c0   00000040  00000040  00000000  RWIX
+  ECANB_MBOX            00006300   00000100  00000100  00000000  RWIX
+  EPWM9                 00006600   00000022  00000022  00000000  RWIX
+  EPWM1                 00006800   00000022  00000022  00000000  RWIX
+  EPWM2                 00006840   00000022  00000022  00000000  RWIX
+  EPWM3                 00006880   00000022  00000022  00000000  RWIX
+  EPWM4                 000068c0   00000022  00000022  00000000  RWIX
+  EPWM5                 00006900   00000022  00000022  00000000  RWIX
+  EPWM6                 00006940   00000022  00000022  00000000  RWIX
+  EPWM7                 00006980   00000022  00000022  00000000  RWIX
+  EPWM8                 000069c0   00000022  00000022  00000000  RWIX
+  ECAP1                 00006a00   00000020  00000020  00000000  RWIX
+  ECAP2                 00006a20   00000020  00000020  00000000  RWIX
+  ECAP3                 00006a40   00000020  00000020  00000000  RWIX
+  ECAP4                 00006a60   00000020  00000020  00000000  RWIX
+  ECAP5                 00006a80   00000020  00000020  00000000  RWIX
+  ECAP6                 00006aa0   00000020  00000020  00000000  RWIX
+  EQEP1                 00006b00   00000040  00000040  00000000  RWIX
+  EQEP2                 00006b40   00000040  00000040  00000000  RWIX
+  EQEP3                 00006b80   00000040  00000040  00000000  RWIX
+  GPIOCTRL              00006f80   00000040  0000002e  00000012  RWIX
+  GPIODAT               00006fc0   00000020  00000020  00000000  RWIX
+  GPIOINT               00006fe0   00000020  0000000a  00000016  RWIX
+  SYSTEM                00007010   00000021  00000021  00000000  RWIX
+  SPIA                  00007040   00000010  00000010  00000000  RWIX
+  SCIA                  00007050   00000010  00000010  00000000  RWIX
+  XINTRUPT              00007070   00000010  00000010  00000000  RWIX
+  SCIB                  00007750   00000010  00000010  00000000  RWIX
+  SCIC                  00007770   00000010  00000010  00000000  RWIX
+  SPID                  00007780   00000010  00000010  00000000  RWIX
+  I2CA                  00007900   00000040  00000022  0000001e  RWIX
+  CSM_PWL               0033fff8   00000008  00000008  00000000  RWIX
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.data      0    00000000    00000000     UNINITIALIZED
+
+IQmathTables 
+*          0    003fe000    00000b50     
+                  003fe000    00000b50     IQmathTables.obj (IQmathTables)
+
+IQmathTables2 
+*          0    003feb50    0000008c     
+                  003feb50    0000008c     IQmathTables2.obj (IQmathTables2)
+
+FPUmathTables 
+*          0    003febdc    000006a0     
+                  003febdc    000006a0     FPUmathTables.obj (FPUmathTables)
+
+ti_prpg_sect 
+*          0    003ff27c    00000090     
+                  003ff27c    00000090     ti_test.obj (ti_prpg_sect)
+
+ti_misr_sect 
+*          0    003ff30c    00000040     
+                  003ff30c    00000040     ti_test.obj (ti_misr_sect)
+
+.text      0    003ff34c    000006ad     
+                  003ff34c    000000b9     CAN_Boot.obj (.text)
+                  003ff405    000000a9     I2C_Boot.obj (.text)
+                  003ff4ae    000000bd     MCBSP_Boot.obj (.text)
+                  003ff56b    00000089     Parallel_Boot.obj (.text)
+                  003ff5f4    0000007e     SCI_Boot.obj (.text)
+                  003ff672    000000d5     SelectMode_Boot.obj (.text)
+                  003ff747    00000047     Shared_Boot.obj (.text)
+                  003ff78e    000000b0     SPI_Boot.obj (.text)
+                  003ff83e    00000076     SysCtrl_Boot.obj (.text)
+                  003ff8b4    00000023     TI_Test_F.obj (.text)
+                  003ff8d7    0000003e     XINTF_Boot.obj (.text)
+                  003ff915    000000e4     XINTF_Parallel_Boot.obj (.text)
+
+.InitBoot 
+*          0    003ff9f9    00000026     
+                  003ff9f9    00000026     Init_Boot.obj (.InitBoot)
+
+.Isr       0    003ffa1f    00000007     
+                  003ffa1f    00000007     ITRAPIsr.obj (.Isr)
+
+rsvd1      0    003ffa26    00000594     
+                  003ffa26    00000594     ReservedSpace.obj (rsvd1)
+
+.Version   0    003fffba    00000002     
+                  003fffba    00000002     Init_Boot.obj (.Version)
+
+.Checksum 
+*          0    003fffbc    00000004     
+                  003fffbc    00000004     Init_Boot.obj (.Checksum)
+
+.BootVecs 
+*          0    003fffc0    00000040     
+                  003fffc0    00000040     Vectors_Boot.obj (.BootVecs)
+
+.bss       1    00000000    00000000     UNINITIALIZED
+
+.ebss      1    00000002    00000004     UNINITIALIZED
+                  00000002    00000004     Shared_Boot.obj (.ebss)
+
+.stack     1    00000006    00000200     UNINITIALIZED
+
+DevEmuRegsFile 
+*          1    00000880    000000d0     UNINITIALIZED
+                  00000880    000000d0     DSP2834x_GlobalVariableDefs.obj (DevEmuRegsFile)
+
+XintfRegsFile 
+*          1    00000b20    0000001e     UNINITIALIZED
+                  00000b20    0000001e     DSP2834x_GlobalVariableDefs.obj (XintfRegsFile)
+
+CpuTimer0RegsFile 
+*          1    00000c00    00000008     UNINITIALIZED
+                  00000c00    00000008     DSP2834x_GlobalVariableDefs.obj (CpuTimer0RegsFile)
+
+CpuTimer1RegsFile 
+*          1    00000c08    00000008     UNINITIALIZED
+                  00000c08    00000008     DSP2834x_GlobalVariableDefs.obj (CpuTimer1RegsFile)
+
+CpuTimer2RegsFile 
+*          1    00000c10    00000008     UNINITIALIZED
+                  00000c10    00000008     DSP2834x_GlobalVariableDefs.obj (CpuTimer2RegsFile)
+
+PieCtrlRegsFile 
+*          1    00000ce0    0000001a     UNINITIALIZED
+                  00000ce0    0000001a     DSP2834x_GlobalVariableDefs.obj (PieCtrlRegsFile)
+
+PieVectTableFile 
+*          1    00000d00    00000100     UNINITIALIZED
+                  00000d00    00000100     DSP2834x_GlobalVariableDefs.obj (PieVectTableFile)
+
+DmaRegsFile 
+*          1    00001000    000000e0     UNINITIALIZED
+                  00001000    000000e0     DSP2834x_GlobalVariableDefs.obj (DmaRegsFile)
+
+McbspaRegsFile 
+*          1    00005000    00000025     UNINITIALIZED
+                  00005000    00000025     DSP2834x_GlobalVariableDefs.obj (McbspaRegsFile)
+
+McbspbRegsFile 
+*          1    00005040    00000025     UNINITIALIZED
+                  00005040    00000025     DSP2834x_GlobalVariableDefs.obj (McbspbRegsFile)
+
+ECanaRegsFile 
+*          1    00006000    00000034     UNINITIALIZED
+                  00006000    00000034     DSP2834x_GlobalVariableDefs.obj (ECanaRegsFile)
+
+ECanaLAMRegsFile 
+*          1    00006040    00000040     UNINITIALIZED
+                  00006040    00000040     DSP2834x_GlobalVariableDefs.obj (ECanaLAMRegsFile)
+
+ECanaMOTSRegsFile 
+*          1    00006080    00000040     UNINITIALIZED
+                  00006080    00000040     DSP2834x_GlobalVariableDefs.obj (ECanaMOTSRegsFile)
+
+ECanaMOTORegsFile 
+*          1    000060c0    00000040     UNINITIALIZED
+                  000060c0    00000040     DSP2834x_GlobalVariableDefs.obj (ECanaMOTORegsFile)
+
+ECanaMboxesFile 
+*          1    00006100    00000100     UNINITIALIZED
+                  00006100    00000100     DSP2834x_GlobalVariableDefs.obj (ECanaMboxesFile)
+
+ECanbRegsFile 
+*          1    00006200    00000034     UNINITIALIZED
+                  00006200    00000034     DSP2834x_GlobalVariableDefs.obj (ECanbRegsFile)
+
+ECanbLAMRegsFile 
+*          1    00006240    00000040     UNINITIALIZED
+                  00006240    00000040     DSP2834x_GlobalVariableDefs.obj (ECanbLAMRegsFile)
+
+ECanbMOTSRegsFile 
+*          1    00006280    00000040     UNINITIALIZED
+                  00006280    00000040     DSP2834x_GlobalVariableDefs.obj (ECanbMOTSRegsFile)
+
+ECanbMOTORegsFile 
+*          1    000062c0    00000040     UNINITIALIZED
+                  000062c0    00000040     DSP2834x_GlobalVariableDefs.obj (ECanbMOTORegsFile)
+
+ECanbMboxesFile 
+*          1    00006300    00000100     UNINITIALIZED
+                  00006300    00000100     DSP2834x_GlobalVariableDefs.obj (ECanbMboxesFile)
+
+EPwm9RegsFile 
+*          1    00006600    00000022     UNINITIALIZED
+                  00006600    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm9RegsFile)
+
+EPwm1RegsFile 
+*          1    00006800    00000022     UNINITIALIZED
+                  00006800    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm1RegsFile)
+
+EPwm2RegsFile 
+*          1    00006840    00000022     UNINITIALIZED
+                  00006840    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm2RegsFile)
+
+EPwm3RegsFile 
+*          1    00006880    00000022     UNINITIALIZED
+                  00006880    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm3RegsFile)
+
+EPwm4RegsFile 
+*          1    000068c0    00000022     UNINITIALIZED
+                  000068c0    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm4RegsFile)
+
+EPwm5RegsFile 
+*          1    00006900    00000022     UNINITIALIZED
+                  00006900    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm5RegsFile)
+
+EPwm6RegsFile 
+*          1    00006940    00000022     UNINITIALIZED
+                  00006940    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm6RegsFile)
+
+EPwm7RegsFile 
+*          1    00006980    00000022     UNINITIALIZED
+                  00006980    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm7RegsFile)
+
+EPwm8RegsFile 
+*          1    000069c0    00000022     UNINITIALIZED
+                  000069c0    00000022     DSP2834x_GlobalVariableDefs.obj (EPwm8RegsFile)
+
+ECap1RegsFile 
+*          1    00006a00    00000020     UNINITIALIZED
+                  00006a00    00000020     DSP2834x_GlobalVariableDefs.obj (ECap1RegsFile)
+
+ECap2RegsFile 
+*          1    00006a20    00000020     UNINITIALIZED
+                  00006a20    00000020     DSP2834x_GlobalVariableDefs.obj (ECap2RegsFile)
+
+ECap3RegsFile 
+*          1    00006a40    00000020     UNINITIALIZED
+                  00006a40    00000020     DSP2834x_GlobalVariableDefs.obj (ECap3RegsFile)
+
+ECap4RegsFile 
+*          1    00006a60    00000020     UNINITIALIZED
+                  00006a60    00000020     DSP2834x_GlobalVariableDefs.obj (ECap4RegsFile)
+
+ECap5RegsFile 
+*          1    00006a80    00000020     UNINITIALIZED
+                  00006a80    00000020     DSP2834x_GlobalVariableDefs.obj (ECap5RegsFile)
+
+ECap6RegsFile 
+*          1    00006aa0    00000020     UNINITIALIZED
+                  00006aa0    00000020     DSP2834x_GlobalVariableDefs.obj (ECap6RegsFile)
+
+EQep1RegsFile 
+*          1    00006b00    00000040     UNINITIALIZED
+                  00006b00    00000040     DSP2834x_GlobalVariableDefs.obj (EQep1RegsFile)
+
+EQep2RegsFile 
+*          1    00006b40    00000040     UNINITIALIZED
+                  00006b40    00000040     DSP2834x_GlobalVariableDefs.obj (EQep2RegsFile)
+
+EQep3RegsFile 
+*          1    00006b80    00000040     UNINITIALIZED
+                  00006b80    00000040     DSP2834x_GlobalVariableDefs.obj (EQep3RegsFile)
+
+GpioCtrlRegsFile 
+*          1    00006f80    0000002e     UNINITIALIZED
+                  00006f80    0000002e     DSP2834x_GlobalVariableDefs.obj (GpioCtrlRegsFile)
+
+GpioDataRegsFile 
+*          1    00006fc0    00000020     UNINITIALIZED
+                  00006fc0    00000020     DSP2834x_GlobalVariableDefs.obj (GpioDataRegsFile)
+
+GpioIntRegsFile 
+*          1    00006fe0    0000000a     UNINITIALIZED
+                  00006fe0    0000000a     DSP2834x_GlobalVariableDefs.obj (GpioIntRegsFile)
+
+SysCtrlRegsFile 
+*          1    00007010    00000021     UNINITIALIZED
+                  00007010    00000021     DSP2834x_GlobalVariableDefs.obj (SysCtrlRegsFile)
+
+SpiaRegsFile 
+*          1    00007040    00000010     UNINITIALIZED
+                  00007040    00000010     DSP2834x_GlobalVariableDefs.obj (SpiaRegsFile)
+
+SciaRegsFile 
+*          1    00007050    00000010     UNINITIALIZED
+                  00007050    00000010     DSP2834x_GlobalVariableDefs.obj (SciaRegsFile)
+
+XIntruptRegsFile 
+*          1    00007070    00000010     UNINITIALIZED
+                  00007070    00000010     DSP2834x_GlobalVariableDefs.obj (XIntruptRegsFile)
+
+ScibRegsFile 
+*          1    00007750    00000010     UNINITIALIZED
+                  00007750    00000010     DSP2834x_GlobalVariableDefs.obj (ScibRegsFile)
+
+ScicRegsFile 
+*          1    00007770    00000010     UNINITIALIZED
+                  00007770    00000010     DSP2834x_GlobalVariableDefs.obj (ScicRegsFile)
+
+SpidRegsFile 
+*          1    00007780    00000010     UNINITIALIZED
+                  00007780    00000010     DSP2834x_GlobalVariableDefs.obj (SpidRegsFile)
+
+I2caRegsFile 
+*          1    00007900    00000022     UNINITIALIZED
+                  00007900    00000022     DSP2834x_GlobalVariableDefs.obj (I2caRegsFile)
+
+CsmPwlFile 
+*          1    0033fff8    00000008     UNINITIALIZED
+                  0033fff8    00000008     DSP2834x_GlobalVariableDefs.obj (CsmPwlFile)
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+00000000   .bss
+00000000   .data
+003ff34c   .text
+00000002   _BootMode
+003ff34c   _CAN_Boot
+003ff3e9   _CAN_GetWordData
+003ff366   _CAN_Init
+003ff747   _CopyData
+00000c00   _CpuTimer0Regs
+00000c08   _CpuTimer1Regs
+00000c10   _CpuTimer2Regs
+0033fff8   _CsmPwl
+00000880   _DevEmuRegs
+00001000   _DmaRegs
+00006040   _ECanaLAMRegs
+000060c0   _ECanaMOTORegs
+00006080   _ECanaMOTSRegs
+00006100   _ECanaMboxes
+00006000   _ECanaRegs
+00006240   _ECanbLAMRegs
+000062c0   _ECanbMOTORegs
+00006280   _ECanbMOTSRegs
+00006300   _ECanbMboxes
+00006200   _ECanbRegs
+00006a00   _ECap1Regs
+00006a20   _ECap2Regs
+00006a40   _ECap3Regs
+00006a60   _ECap4Regs
+00006a80   _ECap5Regs
+00006aa0   _ECap6Regs
+00006800   _EPwm1Regs
+00006840   _EPwm2Regs
+00006880   _EPwm3Regs
+000068c0   _EPwm4Regs
+00006900   _EPwm5Regs
+00006940   _EPwm6Regs
+00006980   _EPwm7Regs
+000069c0   _EPwm8Regs
+00006600   _EPwm9Regs
+00006b00   _EQep1Regs
+00006b40   _EQep2Regs
+00006b80   _EQep3Regs
+003ff0de   _FPUatan2HalfPITable
+003ff0e2   _FPUatan2Table
+003ff268   _FPUatan2TableEnd
+003fecdc   _FPUcosTable
+003ff0de   _FPUcosTableEnd
+003febdc   _FPUsinTable
+003fefdc   _FPUsinTableEnd
+003ff76c   _GetLongData
+00000004   _GetWordData
+00006f80   _GpioCtrlRegs
+00006fc0   _GpioDataRegs
+00006fe0   _GpioIntRegs
+003ff482   _I2C_Boot
+003ff49b   _I2C_GetWord
+00007900   _I2caRegs
+003fead8   _IQ10mpyRndSatTable
+003feacc   _IQ11mpyRndSatTable
+003feac0   _IQ12mpyRndSatTable
+003feab4   _IQ13mpyRndSatTable
+003feaa8   _IQ14mpyRndSatTable
+003fea9c   _IQ15mpyRndSatTable
+003fea90   _IQ16mpyRndSatTable
+003fea84   _IQ17mpyRndSatTable
+003fea78   _IQ18mpyRndSatTable
+003fea6c   _IQ19mpyRndSatTable
+003feb44   _IQ1mpyRndSatTable
+003fea60   _IQ20mpyRndSatTable
+003fea54   _IQ21mpyRndSatTable
+003fea48   _IQ22mpyRndSatTable
+003fea3c   _IQ23mpyRndSatTable
+003fea30   _IQ24mpyRndSatTable
+003fea24   _IQ25mpyRndSatTable
+003fea18   _IQ26mpyRndSatTable
+003fea0c   _IQ27mpyRndSatTable
+003fea00   _IQ28mpyRndSatTable
+003fe9f4   _IQ29mpyRndSatTable
+003feb38   _IQ2mpyRndSatTable
+003fe9e8   _IQ30mpyRndSatTable
+003feb2c   _IQ3mpyRndSatTable
+003feb20   _IQ4mpyRndSatTable
+003feb14   _IQ5mpyRndSatTable
+003feb08   _IQ6mpyRndSatTable
+003feafc   _IQ7mpyRndSatTable
+003feaf0   _IQ8mpyRndSatTable
+003feae4   _IQ9mpyRndSatTable
+003fe824   _IQatan2HalfPITable
+003fe862   _IQatan2Table
+003fe9e8   _IQatan2TableEnd
+003fe100   _IQcosTable
+003fe502   _IQcosTableEnd
+003fe502   _IQdivRoundSatTable
+003fe510   _IQdivTable
+003fe712   _IQdivTableEnd
+003feb50   _IQexpTable
+003febc8   _IQexpTableCoeff
+003febdc   _IQexpTableCoeffEnd
+003febdc   _IQexpTableEnd
+003feb50   _IQexpTableMinMax
+003febc8   _IQexpTableMinMaxEnd
+003fe712   _IQisqrtRoundSatTable
+003fe722   _IQisqrtTable
+003fe824   _IQisqrtTableEnd
+003fe9e8   _IQmpyRndSatTable
+003feb50   _IQmpyRndSatTableEnd
+003fe000   _IQsinTable
+003fe400   _IQsinTableEnd
+003fe712   _IQsqrtRoundSatTable
+003fe722   _IQsqrtTable
+003fe824   _IQsqrtTableEnd
+003ffa1f   _ITRAPIsr
+003ff9f9   _InitBoot
+003ff864   _InitPll
+003ff4ae   _MCBSP_Boot
+003ff55c   _MCBSP_GetWordData
+003ff4c7   _MCBSP_Init
+00005000   _McbspaRegs
+00005040   _McbspbRegs
+003ff5a4   _Parallel_Boot
+003ff5cf   _Parallel_GetWordData_16bit
+003ff5b7   _Parallel_GetWordData_8bit
+003ff5e7   _Parallel_HostHandshake
+003ff5db   _Parallel_WaitHostRdy
+00000ce0   _PieCtrlRegs
+00000d00   _PieVectTable
+003ff77e   _ReadReservedFn
+003ff657   _SCIA_GetWordData
+003ff63c   _SCI_Boot
+003ff830   _SPIA_GetWordData
+003ff80f   _SPIA_SetAddress_KeyChk
+003ff7ec   _SPI_Boot
+00007050   _SciaRegs
+00007750   _ScibRegs
+00007770   _ScicRegs
+003ff672   _SelectBootMode
+00007040   _SpiaRegs
+00007780   _SpidRegs
+00007010   _SysCtrlRegs
+003ff8b4   _TI_Test
+003ff83e   _WatchDogDisable
+003ff846   _WatchDogEnable
+003ff85c   _WatchDogReset
+003ff852   _WatchDogService
+003ff8d7   _XINTF_Boot
+003ff976   _XINTF_Parallel_Boot
+003ff9a0   _XINTF_Parallel_GetWordData_16bit
+003ff989   _XINTF_Parallel_GetWordData_8bit
+003ff9b8   _XINTF_Parallel_HostHandshake
+003ff9c5   _XINTF_Parallel_ReservedFn
+003ff9ac   _XINTF_Parallel_WaitHostRdy
+00007070   _XIntruptRegs
+00000b20   _XintfRegs
+00000200   __STACK_SIZE
+ffffffff   ___TI_pprof_out_hndl
+ffffffff   ___TI_prof_var_size
+ffffffff   ___TI_prof_var_start
+ffffffff   ___binit__
+00000000   ___bss__
+ffffffff   ___c_args__
+00000000   ___data__
+00000000   ___edata__
+00000000   ___end__
+003ff9f9   ___etext__
+003ff34c   ___text__
+ffffffff   binit
+00000000   edata
+00000000   end
+003ff9f9   etext
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000000   .bss
+00000000   .data
+00000000   ___bss__
+00000000   ___data__
+00000000   ___edata__
+00000000   ___end__
+00000000   edata
+00000000   end
+00000002   _BootMode
+00000004   _GetWordData
+00000200   __STACK_SIZE
+00000880   _DevEmuRegs
+00000b20   _XintfRegs
+00000c00   _CpuTimer0Regs
+00000c08   _CpuTimer1Regs
+00000c10   _CpuTimer2Regs
+00000ce0   _PieCtrlRegs
+00000d00   _PieVectTable
+00001000   _DmaRegs
+00005000   _McbspaRegs
+00005040   _McbspbRegs
+00006000   _ECanaRegs
+00006040   _ECanaLAMRegs
+00006080   _ECanaMOTSRegs
+000060c0   _ECanaMOTORegs
+00006100   _ECanaMboxes
+00006200   _ECanbRegs
+00006240   _ECanbLAMRegs
+00006280   _ECanbMOTSRegs
+000062c0   _ECanbMOTORegs
+00006300   _ECanbMboxes
+00006600   _EPwm9Regs
+00006800   _EPwm1Regs
+00006840   _EPwm2Regs
+00006880   _EPwm3Regs
+000068c0   _EPwm4Regs
+00006900   _EPwm5Regs
+00006940   _EPwm6Regs
+00006980   _EPwm7Regs
+000069c0   _EPwm8Regs
+00006a00   _ECap1Regs
+00006a20   _ECap2Regs
+00006a40   _ECap3Regs
+00006a60   _ECap4Regs
+00006a80   _ECap5Regs
+00006aa0   _ECap6Regs
+00006b00   _EQep1Regs
+00006b40   _EQep2Regs
+00006b80   _EQep3Regs
+00006f80   _GpioCtrlRegs
+00006fc0   _GpioDataRegs
+00006fe0   _GpioIntRegs
+00007010   _SysCtrlRegs
+00007040   _SpiaRegs
+00007050   _SciaRegs
+00007070   _XIntruptRegs
+00007750   _ScibRegs
+00007770   _ScicRegs
+00007780   _SpidRegs
+00007900   _I2caRegs
+0033fff8   _CsmPwl
+003fe000   _IQsinTable
+003fe100   _IQcosTable
+003fe400   _IQsinTableEnd
+003fe502   _IQcosTableEnd
+003fe502   _IQdivRoundSatTable
+003fe510   _IQdivTable
+003fe712   _IQdivTableEnd
+003fe712   _IQisqrtRoundSatTable
+003fe712   _IQsqrtRoundSatTable
+003fe722   _IQisqrtTable
+003fe722   _IQsqrtTable
+003fe824   _IQatan2HalfPITable
+003fe824   _IQisqrtTableEnd
+003fe824   _IQsqrtTableEnd
+003fe862   _IQatan2Table
+003fe9e8   _IQ30mpyRndSatTable
+003fe9e8   _IQatan2TableEnd
+003fe9e8   _IQmpyRndSatTable
+003fe9f4   _IQ29mpyRndSatTable
+003fea00   _IQ28mpyRndSatTable
+003fea0c   _IQ27mpyRndSatTable
+003fea18   _IQ26mpyRndSatTable
+003fea24   _IQ25mpyRndSatTable
+003fea30   _IQ24mpyRndSatTable
+003fea3c   _IQ23mpyRndSatTable
+003fea48   _IQ22mpyRndSatTable
+003fea54   _IQ21mpyRndSatTable
+003fea60   _IQ20mpyRndSatTable
+003fea6c   _IQ19mpyRndSatTable
+003fea78   _IQ18mpyRndSatTable
+003fea84   _IQ17mpyRndSatTable
+003fea90   _IQ16mpyRndSatTable
+003fea9c   _IQ15mpyRndSatTable
+003feaa8   _IQ14mpyRndSatTable
+003feab4   _IQ13mpyRndSatTable
+003feac0   _IQ12mpyRndSatTable
+003feacc   _IQ11mpyRndSatTable
+003fead8   _IQ10mpyRndSatTable
+003feae4   _IQ9mpyRndSatTable
+003feaf0   _IQ8mpyRndSatTable
+003feafc   _IQ7mpyRndSatTable
+003feb08   _IQ6mpyRndSatTable
+003feb14   _IQ5mpyRndSatTable
+003feb20   _IQ4mpyRndSatTable
+003feb2c   _IQ3mpyRndSatTable
+003feb38   _IQ2mpyRndSatTable
+003feb44   _IQ1mpyRndSatTable
+003feb50   _IQexpTable
+003feb50   _IQexpTableMinMax
+003feb50   _IQmpyRndSatTableEnd
+003febc8   _IQexpTableCoeff
+003febc8   _IQexpTableMinMaxEnd
+003febdc   _FPUsinTable
+003febdc   _IQexpTableCoeffEnd
+003febdc   _IQexpTableEnd
+003fecdc   _FPUcosTable
+003fefdc   _FPUsinTableEnd
+003ff0de   _FPUatan2HalfPITable
+003ff0de   _FPUcosTableEnd
+003ff0e2   _FPUatan2Table
+003ff268   _FPUatan2TableEnd
+003ff34c   .text
+003ff34c   _CAN_Boot
+003ff34c   ___text__
+003ff366   _CAN_Init
+003ff3e9   _CAN_GetWordData
+003ff482   _I2C_Boot
+003ff49b   _I2C_GetWord
+003ff4ae   _MCBSP_Boot
+003ff4c7   _MCBSP_Init
+003ff55c   _MCBSP_GetWordData
+003ff5a4   _Parallel_Boot
+003ff5b7   _Parallel_GetWordData_8bit
+003ff5cf   _Parallel_GetWordData_16bit
+003ff5db   _Parallel_WaitHostRdy
+003ff5e7   _Parallel_HostHandshake
+003ff63c   _SCI_Boot
+003ff657   _SCIA_GetWordData
+003ff672   _SelectBootMode
+003ff747   _CopyData
+003ff76c   _GetLongData
+003ff77e   _ReadReservedFn
+003ff7ec   _SPI_Boot
+003ff80f   _SPIA_SetAddress_KeyChk
+003ff830   _SPIA_GetWordData
+003ff83e   _WatchDogDisable
+003ff846   _WatchDogEnable
+003ff852   _WatchDogService
+003ff85c   _WatchDogReset
+003ff864   _InitPll
+003ff8b4   _TI_Test
+003ff8d7   _XINTF_Boot
+003ff976   _XINTF_Parallel_Boot
+003ff989   _XINTF_Parallel_GetWordData_8bit
+003ff9a0   _XINTF_Parallel_GetWordData_16bit
+003ff9ac   _XINTF_Parallel_WaitHostRdy
+003ff9b8   _XINTF_Parallel_HostHandshake
+003ff9c5   _XINTF_Parallel_ReservedFn
+003ff9f9   _InitBoot
+003ff9f9   ___etext__
+003ff9f9   etext
+003ffa1f   _ITRAPIsr
+ffffffff   ___TI_pprof_out_hndl
+ffffffff   ___TI_prof_var_size
+ffffffff   ___TI_prof_var_start
+ffffffff   ___binit__
+ffffffff   ___c_args__
+ffffffff   binit
+
+[169 symbols]

@@ -1,0 +1,165 @@
+#include	<header.h>
+#include	<extern.h>
+
+void monitor_proc()		// need_edit
+{
+	// int temp;
+	int disp_fnd_data;
+
+	static double disp_fnd_data_out=0.0;
+	double disp_fnd_data_in;
+
+	Uint32 RunTimeMsec=0 ;
+	static unsigned long StartTimeMsec = 0 ;
+
+	RunTimeMsec = ulGetTime_mSec( StartTimeMsec);
+
+	if(RunTimeMsec < 100) return;
+
+	StartTimeMsec = ulGetNow_mSec( );
+
+	if( gMachineState == STATE_POWER_ON ){
+		warning_fnd_flag = 0;
+
+		disp_fnd_data =(int)(gfRunTime * 100);
+		fnd_buf[0] = disp_fnd_data / 1000;
+		fnd_buf[1] = (disp_fnd_data % 1000)/100;
+		fnd_buf[2] = (disp_fnd_data % 100)/10;
+		fnd_buf[3] = (disp_fnd_data % 10);
+
+		// fnd_data == 10 --> blank 
+		if( fnd_buf[0] == 0 ){
+			fnd_buf[0] = 10;
+			if( fnd_buf[1] == 0 ){
+				fnd_buf[1] = 10;
+				if(fnd_buf[2] == 0 ) fnd_buf[2] = 10;
+			}
+		}
+	}
+	else if(button_input_state == BUTTON_ROOT){
+	
+		if(( gMachineState == STATE_READY )&&(disp_fnd_mode==0)){
+			fnd_digit_dp_all_off();
+			fnd_buf[0] = 'R';
+			fnd_buf[1] = 'E';
+			fnd_buf[2] = 'D';
+			fnd_buf[3] = 'Y';
+			// Trip 시에 데이터를 저장해 둔다.
+		}
+		else{
+			fnd_digit_dp_all_off();
+
+			if( disp_fnd_mode == 1 ){
+				disp_fnd_data_in = Freq_out * 100.0;
+				fnd_digit1_dp_on();
+			}
+			else if( disp_fnd_mode == 2 ){	// current 
+				disp_fnd_data_in = Is_mag_rms * 100.0;
+				fnd_digit1_dp_on();
+			}
+			else if( disp_fnd_mode == 3 ){	// Vdc 
+				disp_fnd_data_in = Vdc;
+			}
+			else{  // ( disp_fnd_mode == 0 )
+				disp_fnd_data_in = rpm;
+			}
+
+			LPF1(0.1,1.0,disp_fnd_data_in, & disp_fnd_data_out);
+
+			disp_fnd_data =(int)(disp_fnd_data_out);
+			fnd_buf[0] = disp_fnd_data / 1000;
+			fnd_buf[1] = (disp_fnd_data % 1000)/100;
+			fnd_buf[2] = (disp_fnd_data % 100)/10;
+			fnd_buf[3] = (disp_fnd_data % 10);
+			
+			// fnd_data == 10 --> blank 
+			if( fnd_buf[0] == 0 ){
+				fnd_buf[0] = 10;
+				if( fnd_buf[1] == 0 ){
+					fnd_buf[1] = 10;
+					if(fnd_buf[2] == 0 ) fnd_buf[2] = 10;
+				}
+			}
+		}
+	}
+	else if(button_input_state == BUTTON_TRIP)
+	{
+		fnd_blink_all_on();
+		fnd_digit_dp_all_off();
+		fnd_digit2_dp_on();
+
+		if( disp_fnd_mode == 0 ){
+			fnd_buf[0] = 'T';
+			fnd_buf[1] = 'R';
+			fnd_buf[2] = 'I';
+			fnd_buf[3] = 'P';
+		}
+		else{
+			if( disp_fnd_mode == 1 )		disp_fnd_data = TripInfoNow.CODE;
+			else if( disp_fnd_mode == 2 )	disp_fnd_data = (int)(TripInfoNow.VDC * 10) ;
+			else if( disp_fnd_mode == 3 )	disp_fnd_data = ( int) (TripInfoNow.HZ * 10 );
+			else disp_fnd_data = (int)TripInfoNow.CODE;
+
+			fnd_buf[0] = disp_fnd_data / 1000;
+			fnd_buf[1] = (disp_fnd_data % 1000)/100;
+			fnd_buf[2] = (disp_fnd_data % 100)/10;
+			fnd_buf[3] = (disp_fnd_data % 10);
+			
+			if( fnd_buf[0] <= 0 ){
+				fnd_buf[0] = 10;	// blank
+				if( fnd_buf[1] == 0 ){
+					fnd_buf[1] = 10;
+				}
+			}
+		}
+	}
+}
+
+void GetInputMark(char * str)
+{
+	strncpy(str,"xxxx",20);			// debug
+
+/*
+	char str2[30]= "TEST";
+	str2[0] = 'I';
+	str2[1] = 'N';
+	str2[2] = 'P';
+	str2[3] = 'U';
+	str2[4] = 'T';
+	str2[5] = '[';
+
+	if(terminal_input_state & 0x0001 ) 	str2[6] = 'I';
+	else								str2[6] = 'O';
+
+	if(terminal_input_state & 0x0002 ) 	str2[7] = 'I';
+	else								str2[7] = 'O';
+
+	if(terminal_input_state & 0x0004 ) 	str2[8] = 'I';
+	else								str2[8] = 'O';
+
+	if(terminal_input_state & 0x0008 ) 	str2[9] = 'I';
+	else								str2[9] = 'O';
+
+	if(terminal_input_state & 0x0010 ) 	str2[10] = 'I';
+	else								str2[10] = 'O';
+
+	if(terminal_input_state & 0x0020 ) 	str2[11] = 'I';
+	else								str2[11] = 'O';
+
+	if(terminal_input_state & 0x0040 ) 	str2[12] = 'I';
+	else								str2[12] = 'O';
+
+	if(terminal_input_state & 0x0080 ) 	str2[13] = 'I';
+	else								str2[13] = 'O';
+
+	str2[18] = ']';
+	str2[19] = '_'; 
+	str2[20] = 0; 
+	strncpy(str,str2,20);
+*/
+}
+
+//==================================
+// End of file.
+//==================================
+

@@ -1,0 +1,634 @@
+******************************************************************************
+             TMS320C2000 Linker PC v6.4.4                      
+******************************************************************************
+>> Linked Tue Aug 04 10:36:20 2015
+
+OUTPUT FILE NAME:   <F28004x_ROM.out>
+ENTRY POINT SYMBOL: "_InitBoot"  address: 003fc7a5
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+PAGE 0:
+  SYSBIOS_FLASH         00081010   000003df  00000000  000003df  RWIX
+  ROM_SIGNATURE         003f0000   00000002  00000002  00000000  RWIX
+  PLC_LITE              003f0002   00001000  00000000  00001000  RWIX
+  PLC_COM               003f1002   000007a0  00000000  000007a0  RWIX
+  RESERVED_01           003f17a2   0000005e  00000000  0000005e  RWIX
+  APPBOOT               003f1800   00000300  00000000  00000300  RWIX
+  DFU                   003f1b00   00001600  00000000  00001600  RWIX
+  PLC_G3                003f3100   00002260  00000000  00002260  RWIX
+  PLCTABLES             003f5360   00000490  00000490  00000000  RWIX
+  RESERVED_02           003f57f0   00000010  00000000  00000010  RWIX
+  PLC_MM_TABLES         003f5800   00001902  00001902  00000000  RWIX
+  RESERVED_03           003f7102   000000fe  00000000  000000fe  RWIX
+  SYSBIOS_ROM           003f7200   00002000  00001f0c  000000f4  RWIX
+  FPU32_TWIDDLE_TABLE   003f9200   00001800  00001800  00000000  RWIX
+  BOOT                  003faa00   00003fd0  00001e99  00002137  RWIX
+  BOOT_PBIST_CHECKSUM   003fe9d0   00000042  00000042  00000000  RWIX
+  CPU_SPINTAC_DATA_ROM  003fea12   00000010  00000000  00000010  RWIX
+  CPU_FAST_DATA_ROM     003fea22   00000100  00000000  00000100  RWIX
+  FLASHAPI_IN_ROM       003feb22   00001400  00000000  00001400  RWIX
+  PIE_MISMATCH_HANDLER  003fff22   00000050  00000049  00000007  RWIX
+  CRCTABLE_ROM          003fff72   00000008  00000000  00000008  RWIX
+  VERSION               003fff7a   00000002  00000002  00000000  RWIX
+  CHECKSUM              003fff7c   00000042  00000042  00000000  RWIX
+  VECS                  003fffbe   00000042  00000042  00000000  RWIX
+
+PAGE 1:
+  EBSS                  00000002   00000010  0000000e  00000002  RWIX
+  BOOTMODE_VAR          00000012   00000002  00000002  00000000  RWIX
+  STACK                 00000014   000000e0  000000e0  00000000  RWIX
+  SYSBIOS_RAM           00000780   00000080  00000000  00000080  RWIX
+  CLA1_DATAROM_RESERVED 0000f000   00000070  00000000  00000070  RWIX
+  CLA1_FFT_TABLES_RUN   0000f070   00000800  00000800  00000000  RWIX
+  CLA1_DATAROM_RUN      0000f870   0000078a  00000784  00000006  RWIX
+  CROM_VERSION_RUN      0000fffa   00000006  00000002  00000004  RWIX
+  CLA1_DATAROM_RESERVED 01001000   00000070  00000000  00000070  RWIX
+  CLA1_FFT_TABLES       01001070   00000800  00000800  00000000  RWIX
+  CLA1_DATAROM          01001870   0000078a  00000784  00000006  RWIX
+  CROM_VERSION          01001ffa   00000006  00000002  00000004  RWIX
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.test_signature1 
+*          0    003f0000    00000002     
+                  003f0000    00000002     cpubrom_Init_Boot.obj (.test_signature1)
+
+primeTxPreamble 
+*          0    003f5360    00000210     
+                  003f5360    00000210     phy_primetxpreamble.obj (primeTxPreamble)
+
+primeRxPreamble 
+*          0    003f5570    00000200     
+                  003f5570    00000200     phy_primrxpreamble.obj (primeRxPreamble)
+
+primePrefTable 
+*          0    003f5770    00000080     
+                  003f5770    00000080     phy_primeprefTable.obj (primePrefTable)
+
+PLC_TABLE 
+*          0    003f5800    00001400     
+                  003f5800    00001400     mac_plc.obj (PLC_TABLE)
+
+IQmathTables 
+*          0    003f6c00    00000502     
+                  003f6c00    00000502     IQmathTables.obj (IQmathTables)
+
+SYSBIOSROM 
+*          0    003f7200    00001f0c     
+                  003f7200    00001f09     rtos_rom_image.obj (sysbios_1)
+                  003f9109    00000001     --HOLE-- [fill = 0]
+                  003f910a    00000002     rtos_rom_image.obj (sysbios_2)
+
+.CFFT_f32_twiddleFactors 
+*          0    003f9200    00000600     
+                  003f9200    00000600     CFFT_f32_twiddleFactors.obj (.CFFT_f32_twiddleFactors)
+
+.FFT_f32_twiddleFactors 
+*          0    003f9800    00000a00     
+                  003f9800    00000a00     FFT_f32_twiddleFactors.obj (.FFT_f32_twiddleFactors)
+
+tf512pFFTTable 
+*          0    003fa200    00000800     
+                  003fa200    00000800     phy_tf512pfftTable.obj (tf512pFFTTable)
+
+.text      0    003faa00    00001658     
+                  003faa00    00000636     cpubrom_boot.obj (.text)
+                  003fb036    000002c8     SPI_Boot.obj (.text)
+                  003fb2fe    0000023f     I2C_Boot.obj (.text)
+                  003fb53d    000001f9     DCAN_Boot.obj (.text)
+                  003fb736    000001d5     SCI_Boot.obj (.text)
+                  003fb90b    000001d3     pbist.obj (.text)
+                  003fbade    0000012a     cpubrom_dcsm.obj (.text)
+                  003fbc08    000000c9     SelectMode_Boot.obj (.text)
+                  003fbcd1    000000c3     cpubrom_interrupts.obj (.text:retain)
+                  003fbd94    000000bd     Parallel_Boot.obj (.text)
+                  003fbe51    0000004d     i2c.obj (.text:_I2C_initMaster)
+                  003fbe9e    00000049     Shared_Boot.obj (.text)
+                  003fbee7    00000049     gpio.obj (.text:_GPIO_setPadConfig)
+                  003fbf30    0000003b     gpio.obj (.text:_GPIO_setQualificationMode)
+                  003fbf6b    00000037     gpio.obj (.text:_GPIO_setPinConfig)
+                  003fbfa2    00000029     gpio.obj (.text:_GPIO_setAnalogMode)
+                  003fbfcb    00000029     gpio.obj (.text:_GPIO_setDirectionMode)
+                  003fbff4    00000028     spi.obj (.text:_SPI_setConfig)
+                  003fc01c    0000001e     spi.obj (.text:_SPI_getInterruptStatus)
+                  003fc03a    0000000b     cpubrom_interrupts.obj (.text)
+                  003fc045    00000009     cpubrom_checksum.obj (.text)
+                  003fc04e    00000006     cpubrom_utility_funcs.obj (.text)
+                  003fc054    00000004     sysctl.obj (.text)
+
+.CKSUMFUNCS 
+*          0    003fc058    0000074d     
+                  003fc058    0000074d     cpubrom_checksum.obj (.CKSUMFUNCS)
+
+.InitBoot 
+*          0    003fc7a5    0000007c     
+                  003fc7a5    0000007c     cpubrom_Init_Boot.obj (.InitBoot)
+
+.econst    0    003fc822    00000078     
+                  003fc822    0000003c     cpubrom_dcsm.obj (.econst:_dcsm_default_keys_z1)
+                  003fc85e    0000003c     cpubrom_dcsm.obj (.econst:_dcsm_default_keys_z2)
+
+.PBIST_CKSUMLOC 
+*          0    003fe9d0    00000042     
+                  003fe9d0    00000042     cpubrom_checksum.obj (.PBIST_CKSUMLOC)
+
+CBROM_PIE_MISMATCH_HANDLER 
+*          0    003fff22    00000049     
+                  003fff22    00000049     cpubrom_interrupts.obj (CBROM_PIE_MISMATCH_HANDLER:retain)
+
+.Version   0    003fff7a    00000002     
+                  003fff7a    00000002     cpubrom_Init_Boot.obj (.Version)
+
+.CKSUMLOC 
+*          0    003fff7c    00000042     
+                  003fff7c    00000042     cpubrom_checksum.obj (.CKSUMLOC)
+
+.BootVecs 
+*          0    003fffbe    00000042     
+                  003fffbe    00000042     Vectors_Boot.obj (.BootVecs)
+
+.ebss      1    00000002    0000000e     UNINITIALIZED
+                  00000002    00000008     cpubrom_boot.obj (.ebss)
+                  0000000a    00000004     cpubrom_interrupts.obj (.ebss)
+                  0000000e    00000002     Shared_Boot.obj (.ebss)
+
+USER_BOOTMODEVAR 
+*          1    00000012    00000002     UNINITIALIZED
+                  00000012    00000002     cpubrom_boot.obj (USER_BOOTMODEVAR)
+
+.stack     1    00000014    000000e0     UNINITIALIZED
+                  00000014    000000e0     --HOLE--
+
+.CLA1fftTables 
+*          1    01001070    00000800     RUN ADDR = 0000f070
+                  01001070    00000800     fft_twiddle_bit_reverse.obj (.CLA1fftTables)
+
+CLA1mathTables 
+*          1    01001870    00000784     RUN ADDR = 0000f870
+                  01001870    0000018c     CLAatanTable.obj (CLA1mathTables)
+                  010019fc    0000018a     CLAasineTable.obj (CLA1mathTables)
+                  01001b86    00000184     CLAacosineTable.obj (CLA1mathTables)
+                  01001d0a    00000156     CLASinCosTable.obj (CLA1mathTables)
+                  01001e60    000000d2     CLAlnTable.obj (CLA1mathTables)
+                  01001f32    000000c2     CLAexpTable.obj (CLA1mathTables)
+
+.CROMVersion 
+*          1    01001ffa    00000002     RUN ADDR = 0000fffa
+                  01001ffa    00000002     cla_rom_version.obj (.CROMVersion)
+
+
+GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
+
+address     data page           name
+--------    ----------------    ----
+00000002       0 (00000000)     _cbrom_status
+00000004       0 (00000000)     _brom_flash_single_bit_error_low_address
+00000006       0 (00000000)     _brom_flash_single_bit_error_high_address
+00000008       0 (00000000)     _cbrom_pbist_status
+0000000a       0 (00000000)     _cbrom_nmi_status
+0000000c       0 (00000000)     _iTrap_addr
+0000000e       0 (00000000)     _GetWordData
+00000012       0 (00000000)     _BootMode
+
+0000f070     3c1 (0000f040)     _cla_twiddleFactors
+
+0000f470     3d1 (0000f440)     _cla_bitReversalTable
+
+0000f870     3e1 (0000f840)     _CLAatan2HalfPITable
+0000f874     3e1 (0000f840)     _CLAINV2PI
+0000f876     3e1 (0000f840)     _CLAatan2Table
+
+0000f9fc     3e7 (0000f9c0)     _CLAasinHalfPITable
+0000f9fc     3e7 (0000f9c0)     _CLAatan2TableEnd
+
+0000fa00     3e8 (0000fa00)     _CLAasinTable
+
+0000fb86     3ee (0000fb80)     _CLAacosinHalfPITable
+0000fb86     3ee (0000fb80)     _CLAasinTableEnd
+0000fb8a     3ee (0000fb80)     _CLAacosinTable
+
+0000fd0a     3f4 (0000fd00)     _CLAacosinTableEnd
+0000fd0a     3f4 (0000fd00)     _CLAsinTable
+0000fd0a     3f4 (0000fd00)     _CLAsincosTable
+0000fd0a     3f4 (0000fd00)     _CLAsincosTable_Sin0
+
+0000fd4a     3f5 (0000fd40)     _CLAcosTable
+0000fd4a     3f5 (0000fd40)     _CLAsincosTable_Cos0
+
+0000fe0a     3f8 (0000fe00)     _CLAsinTableEnd
+
+0000fe4c     3f9 (0000fe40)     _CLAcosTableEnd
+0000fe4c     3f9 (0000fe40)     _CLAsincosTable_TABLE_SIZE
+0000fe4e     3f9 (0000fe40)     _CLAsincosTable_TABLE_SIZEDivTwoPi
+0000fe50     3f9 (0000fe40)     _CLAsincosTable_TwoPiDivTABLE_SIZE
+0000fe52     3f9 (0000fe40)     _CLAsincosTable_TABLE_MASK
+0000fe54     3f9 (0000fe40)     _CLAsincosTable_Coef0
+0000fe56     3f9 (0000fe40)     _CLAsincosTable_Coef1
+0000fe58     3f9 (0000fe40)     _CLAsincosTable_Coef1_pos
+0000fe5a     3f9 (0000fe40)     _CLAsincosTable_Coef2
+0000fe5c     3f9 (0000fe40)     _CLAsincosTable_Coef3
+0000fe5e     3f9 (0000fe40)     _CLAsincosTable_Coef3_neg
+0000fe60     3f9 (0000fe40)     _CLALNV2
+0000fe60     3f9 (0000fe40)     _CLAsincosTableEnd
+0000fe62     3f9 (0000fe40)     _CLALNVe
+0000fe64     3f9 (0000fe40)     _CLALNV10
+0000fe66     3f9 (0000fe40)     _CLABIAS
+0000fe68     3f9 (0000fe40)     _CLALN_TABLE_MASK1
+0000fe6a     3f9 (0000fe40)     _CLALN_TABLE_MASK2
+0000fe6c     3f9 (0000fe40)     _CLALnTable
+
+0000ff32     3fc (0000ff00)     _CLAINV1
+0000ff32     3fc (0000ff00)     _CLALnTableEnd
+0000ff34     3fc (0000ff00)     _CLAINV2
+0000ff36     3fc (0000ff00)     _CLAINV3
+0000ff38     3fc (0000ff00)     _CLAINV4
+0000ff3a     3fc (0000ff00)     _CLAINV5
+0000ff3c     3fc (0000ff00)     _CLAINV6
+0000ff3e     3fc (0000ff00)     _CLAINV7
+
+0000ff40     3fd (0000ff40)     _CLALOG10
+0000ff42     3fd (0000ff40)     _CLAExpTable
+
+0000fff4     3ff (0000ffc0)     _CLAExpTableEnd
+
+003f5360    fd4d (003f5340)     _PHY_primeTXPreamble
+
+003f5570    fd55 (003f5540)     _PHY_primeRXPreamble
+
+003f5770    fd5d (003f5740)     _PHY_primePrefTable
+
+003f5800    fd60 (003f5800)     _Td1
+
+003f5a00    fd68 (003f5a00)     _Td0
+
+003f5c00    fd70 (003f5c00)     _Td3
+
+003f5e00    fd78 (003f5e00)     _Td2
+
+003f6000    fd80 (003f6000)     _Td4
+
+003f6200    fd88 (003f6200)     _Te1
+
+003f6400    fd90 (003f6400)     _Te0
+
+003f6600    fd98 (003f6600)     _Te3
+
+003f6800    fda0 (003f6800)     _Te2
+
+003f6a00    fda8 (003f6a00)     _Te4
+
+003f6c00    fdb0 (003f6c00)     _IQsinTable
+
+003f6d00    fdb4 (003f6d00)     _IQcosTable
+
+003f7000    fdc0 (003f7000)     _IQsinTableEnd
+
+003f7102    fdc4 (003f7100)     _IQcosTableEnd
+
+003f9200    fe48 (003f9200)     _CFFT_f32_twiddleFactors
+
+003f9800    fe60 (003f9800)     _FFT_f32_twiddleFactors
+
+003fa200    fe88 (003fa200)     _PHY_tf512pFFTTable
+
+003fc822    ff20 (003fc800)     _dcsm_default_keys_z1
+
+003fc85e    ff21 (003fc840)     _dcsm_default_keys_z2
+
+003fe9d0    ffa7 (003fe9c0)     _pbist_csum_rom
+
+003fff7c    fffd (003fff40)     _csum_rom
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+page  address   name                                     
+----  -------   ----                                     
+abs   00601000  .TI.load_image                           
+0     003faa00  .text                                    
+1     00000012  _BootMode                                
+0     003f9200  _CFFT_f32_twiddleFactors                 
+1     0000fe66  _CLABIAS                                 
+1     0000ff42  _CLAExpTable                             
+1     0000fff4  _CLAExpTableEnd                          
+1     0000ff32  _CLAINV1                                 
+1     0000ff34  _CLAINV2                                 
+1     0000f874  _CLAINV2PI                               
+1     0000ff36  _CLAINV3                                 
+1     0000ff38  _CLAINV4                                 
+1     0000ff3a  _CLAINV5                                 
+1     0000ff3c  _CLAINV6                                 
+1     0000ff3e  _CLAINV7                                 
+1     0000fe64  _CLALNV10                                
+1     0000fe60  _CLALNV2                                 
+1     0000fe62  _CLALNVe                                 
+1     0000fe68  _CLALN_TABLE_MASK1                       
+1     0000fe6a  _CLALN_TABLE_MASK2                       
+1     0000ff40  _CLALOG10                                
+1     0000fe6c  _CLALnTable                              
+1     0000ff32  _CLALnTableEnd                           
+1     0000fb86  _CLAacosinHalfPITable                    
+1     0000fb8a  _CLAacosinTable                          
+1     0000fd0a  _CLAacosinTableEnd                       
+1     0000f9fc  _CLAasinHalfPITable                      
+1     0000fa00  _CLAasinTable                            
+1     0000fb86  _CLAasinTableEnd                         
+1     0000f870  _CLAatan2HalfPITable                     
+1     0000f876  _CLAatan2Table                           
+1     0000f9fc  _CLAatan2TableEnd                        
+1     0000fd4a  _CLAcosTable                             
+1     0000fe4c  _CLAcosTableEnd                          
+1     0000fd0a  _CLAsinTable                             
+1     0000fe0a  _CLAsinTableEnd                          
+1     0000fd0a  _CLAsincosTable                          
+1     0000fe60  _CLAsincosTableEnd                       
+1     0000fe54  _CLAsincosTable_Coef0                    
+1     0000fe56  _CLAsincosTable_Coef1                    
+1     0000fe58  _CLAsincosTable_Coef1_pos                
+1     0000fe5a  _CLAsincosTable_Coef2                    
+1     0000fe5c  _CLAsincosTable_Coef3                    
+1     0000fe5e  _CLAsincosTable_Coef3_neg                
+1     0000fd4a  _CLAsincosTable_Cos0                     
+1     0000fd0a  _CLAsincosTable_Sin0                     
+1     0000fe52  _CLAsincosTable_TABLE_MASK               
+1     0000fe4c  _CLAsincosTable_TABLE_SIZE               
+1     0000fe4e  _CLAsincosTable_TABLE_SIZEDivTwoPi       
+1     0000fe50  _CLAsincosTable_TwoPiDivTABLE_SIZE       
+0     003fbe9e  _CopyData                                
+0     003fb55d  _DCAN_Boot                               
+0     003fc809  _ExitBoot                                
+0     003fc807  _ExitPBISTLoc                            
+0     003f9800  _FFT_f32_twiddleFactors                  
+0     003fbfa2  _GPIO_setAnalogMode                      
+0     003fbfcb  _GPIO_setDirectionMode                   
+0     003fbee7  _GPIO_setPadConfig                       
+0     003fbf6b  _GPIO_setPinConfig                       
+0     003fbf30  _GPIO_setQualificationMode               
+0     003fbade  _Gather_Bx_Zx_ZSB                        
+0     003fbec3  _GetLongData                             
+1     0000000e  _GetWordData                             
+0     003fb4ad  _I2CBOOT_configure_gpio                  
+0     003fb3c0  _I2C_Boot                                
+0     003fb480  _I2C_GetWord                             
+0     003fbe51  _I2C_initMaster                          
+0     003f6d00  _IQcosTable                              
+0     003f7102  _IQcosTableEnd                           
+0     003f6c00  _IQsinTable                              
+0     003f7000  _IQsinTableEnd                           
+0     003fc7a5  _InitBoot                                
+0     003fbb37  _InitDCSM                                
+0     003fb90b  _PBIST_PORMemoryTest                     
+0     003f5770  _PHY_primePrefTable                      
+0     003f5570  _PHY_primeRXPreamble                     
+0     003f5360  _PHY_primeTXPreamble                     
+0     003fa200  _PHY_tf512pFFTTable                      
+0     003fbdd5  _Parallel_Boot                           
+0     003fbe2f  _Parallel_GPIOSelect                     
+0     003fbdf2  _Parallel_GetWordData_8bit               
+0     003fbed5  _ReadReservedFn                          
+0     003fb849  _SCIA_GetWordData                        
+0     003fb7c2  _SCI_Boot                                
+0     003fb17e  _SPIA_GetWordData                        
+0     003fb2d7  _SPIA_Init                               
+0     003fb11d  _SPIA_SetAddress_KeyChk                  
+0     003fb18c  _SPIBOOT_configure_gpio                  
+0     003fb0cd  _SPI_Boot                                
+0     003fc01c  _SPI_getInterruptStatus                  
+0     003fbff4  _SPI_setConfig                           
+0     003fb0fd  _SPI_start_Boot                          
+0     003fbcbc  _SelectBootMode                          
+0     003fc054  _SysCtl_delay                            
+0     003f5a00  _Td0                                     
+0     003f5800  _Td1                                     
+0     003f5e00  _Td2                                     
+0     003f5c00  _Td3                                     
+0     003f6000  _Td4                                     
+0     003f6400  _Te0                                     
+0     003f6200  _Te1                                     
+0     003f6800  _Te2                                     
+0     003f6600  _Te3                                     
+0     003f6a00  _Te4                                     
+1     000000f4  __STACK_END                              
+abs   000000e0  __STACK_SIZE                             
+abs   ffffffff  ___binit__                               
+abs   ffffffff  ___c_args__                              
+abs   ffffffff  ___cinit__                               
+0     003fc058  ___etext__                               
+abs   ffffffff  ___pinit__                               
+0     003faa00  ___text__                                
+0     003fc25a  _add_to_bitcolumn_checksum               
+0     003fc144  _add_to_factorial_sum                    
+0     003fc1cf  _add_to_row_weight_sum                   
+0     003fc04e  _branch_to_entryaddress                  
+1     00000006  _brom_flash_single_bit_error_high_address
+1     00000004  _brom_flash_single_bit_error_low_address 
+0     003fc2d1  _calculate_checksum                      
+0     003fc08c  _calculate_composite_checksum_on_rom     
+0     003facd0  _cbrom_GPIO_ReadPin                      
+0     003fab29  _cbrom_configure_device_for_fast_boot    
+0     003face3  _cbrom_decode_bootpins                   
+0     003fab77  _cbrom_device_config                     
+0     003fbc62  _cbrom_emu_boot                          
+0     003fbcd1  _cbrom_handle_nmi                        
+0     003faae6  _cbrom_intosc_trim_config                
+0     003fbd67  _cbrom_itrap_isr                         
+1     0000000a  _cbrom_nmi_status                        
+1     00000008  _cbrom_pbist_status                      
+0     003fff22  _cbrom_pie_vect_mismatch_handler         
+0     003fbc08  _cbrom_standalone_boot                   
+1     00000002  _cbrom_status                            
+0     003fad74  _cbrom_system_init                       
+1     0000f470  _cla_bitReversalTable                    
+1     0000f070  _cla_twiddleFactors                      
+0     003fc5e0  _compare_two_composite_checksums         
+0     003fff7c  _csum_rom                                
+0     003fc822  _dcsm_default_keys_z1                    
+0     003fc85e  _dcsm_default_keys_z2                    
+0     003faca4  _enable_unbonded_io_pullups              
+0     003fac5c  _enable_unbonded_pullups_100_pin         
+0     003fac50  _enable_unbonded_pullups_144_pin         
+0     003fac95  _enable_unbonded_pullups_56_pin          
+0     003fac86  _enable_unbonded_pullups_64_Q_pin        
+0     003fac77  _enable_unbonded_pullups_64_pin          
+0     003fac6a  _enable_unbonded_pullups_80_pin          
+1     0000000c  _iTrap_addr                              
+0     003fc051  _load_itrap_address                      
+0     003fe9d0  _pbist_csum_rom                          
+0     003fc058  _test_reserved_memory                    
+0     003fc746  _verify_pbist_checksum_onROM             
+abs   ffffffff  binit                                    
+abs   ffffffff  cinit                                    
+0     003fc058  etext                                    
+abs   ffffffff  pinit                                    
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+page  address   name                                     
+----  -------   ----                                     
+0     003f5360  _PHY_primeTXPreamble                     
+0     003f5570  _PHY_primeRXPreamble                     
+0     003f5770  _PHY_primePrefTable                      
+0     003f5800  _Td1                                     
+0     003f5a00  _Td0                                     
+0     003f5c00  _Td3                                     
+0     003f5e00  _Td2                                     
+0     003f6000  _Td4                                     
+0     003f6200  _Te1                                     
+0     003f6400  _Te0                                     
+0     003f6600  _Te3                                     
+0     003f6800  _Te2                                     
+0     003f6a00  _Te4                                     
+0     003f6c00  _IQsinTable                              
+0     003f6d00  _IQcosTable                              
+0     003f7000  _IQsinTableEnd                           
+0     003f7102  _IQcosTableEnd                           
+0     003f9200  _CFFT_f32_twiddleFactors                 
+0     003f9800  _FFT_f32_twiddleFactors                  
+0     003fa200  _PHY_tf512pFFTTable                      
+0     003faa00  .text                                    
+0     003faa00  ___text__                                
+0     003faae6  _cbrom_intosc_trim_config                
+0     003fab29  _cbrom_configure_device_for_fast_boot    
+0     003fab77  _cbrom_device_config                     
+0     003fac50  _enable_unbonded_pullups_144_pin         
+0     003fac5c  _enable_unbonded_pullups_100_pin         
+0     003fac6a  _enable_unbonded_pullups_80_pin          
+0     003fac77  _enable_unbonded_pullups_64_pin          
+0     003fac86  _enable_unbonded_pullups_64_Q_pin        
+0     003fac95  _enable_unbonded_pullups_56_pin          
+0     003faca4  _enable_unbonded_io_pullups              
+0     003facd0  _cbrom_GPIO_ReadPin                      
+0     003face3  _cbrom_decode_bootpins                   
+0     003fad74  _cbrom_system_init                       
+0     003fb0cd  _SPI_Boot                                
+0     003fb0fd  _SPI_start_Boot                          
+0     003fb11d  _SPIA_SetAddress_KeyChk                  
+0     003fb17e  _SPIA_GetWordData                        
+0     003fb18c  _SPIBOOT_configure_gpio                  
+0     003fb2d7  _SPIA_Init                               
+0     003fb3c0  _I2C_Boot                                
+0     003fb480  _I2C_GetWord                             
+0     003fb4ad  _I2CBOOT_configure_gpio                  
+0     003fb55d  _DCAN_Boot                               
+0     003fb7c2  _SCI_Boot                                
+0     003fb849  _SCIA_GetWordData                        
+0     003fb90b  _PBIST_PORMemoryTest                     
+0     003fbade  _Gather_Bx_Zx_ZSB                        
+0     003fbb37  _InitDCSM                                
+0     003fbc08  _cbrom_standalone_boot                   
+0     003fbc62  _cbrom_emu_boot                          
+0     003fbcbc  _SelectBootMode                          
+0     003fbcd1  _cbrom_handle_nmi                        
+0     003fbd67  _cbrom_itrap_isr                         
+0     003fbdd5  _Parallel_Boot                           
+0     003fbdf2  _Parallel_GetWordData_8bit               
+0     003fbe2f  _Parallel_GPIOSelect                     
+0     003fbe51  _I2C_initMaster                          
+0     003fbe9e  _CopyData                                
+0     003fbec3  _GetLongData                             
+0     003fbed5  _ReadReservedFn                          
+0     003fbee7  _GPIO_setPadConfig                       
+0     003fbf30  _GPIO_setQualificationMode               
+0     003fbf6b  _GPIO_setPinConfig                       
+0     003fbfa2  _GPIO_setAnalogMode                      
+0     003fbfcb  _GPIO_setDirectionMode                   
+0     003fbff4  _SPI_setConfig                           
+0     003fc01c  _SPI_getInterruptStatus                  
+0     003fc04e  _branch_to_entryaddress                  
+0     003fc051  _load_itrap_address                      
+0     003fc054  _SysCtl_delay                            
+0     003fc058  ___etext__                               
+0     003fc058  _test_reserved_memory                    
+0     003fc058  etext                                    
+0     003fc08c  _calculate_composite_checksum_on_rom     
+0     003fc144  _add_to_factorial_sum                    
+0     003fc1cf  _add_to_row_weight_sum                   
+0     003fc25a  _add_to_bitcolumn_checksum               
+0     003fc2d1  _calculate_checksum                      
+0     003fc5e0  _compare_two_composite_checksums         
+0     003fc746  _verify_pbist_checksum_onROM             
+0     003fc7a5  _InitBoot                                
+0     003fc807  _ExitPBISTLoc                            
+0     003fc809  _ExitBoot                                
+0     003fc822  _dcsm_default_keys_z1                    
+0     003fc85e  _dcsm_default_keys_z2                    
+0     003fe9d0  _pbist_csum_rom                          
+0     003fff22  _cbrom_pie_vect_mismatch_handler         
+0     003fff7c  _csum_rom                                
+1     00000002  _cbrom_status                            
+1     00000004  _brom_flash_single_bit_error_low_address 
+1     00000006  _brom_flash_single_bit_error_high_address
+1     00000008  _cbrom_pbist_status                      
+1     0000000a  _cbrom_nmi_status                        
+1     0000000c  _iTrap_addr                              
+1     0000000e  _GetWordData                             
+1     00000012  _BootMode                                
+1     000000f4  __STACK_END                              
+1     0000f070  _cla_twiddleFactors                      
+1     0000f470  _cla_bitReversalTable                    
+1     0000f870  _CLAatan2HalfPITable                     
+1     0000f874  _CLAINV2PI                               
+1     0000f876  _CLAatan2Table                           
+1     0000f9fc  _CLAasinHalfPITable                      
+1     0000f9fc  _CLAatan2TableEnd                        
+1     0000fa00  _CLAasinTable                            
+1     0000fb86  _CLAacosinHalfPITable                    
+1     0000fb86  _CLAasinTableEnd                         
+1     0000fb8a  _CLAacosinTable                          
+1     0000fd0a  _CLAacosinTableEnd                       
+1     0000fd0a  _CLAsinTable                             
+1     0000fd0a  _CLAsincosTable                          
+1     0000fd0a  _CLAsincosTable_Sin0                     
+1     0000fd4a  _CLAcosTable                             
+1     0000fd4a  _CLAsincosTable_Cos0                     
+1     0000fe0a  _CLAsinTableEnd                          
+1     0000fe4c  _CLAcosTableEnd                          
+1     0000fe4c  _CLAsincosTable_TABLE_SIZE               
+1     0000fe4e  _CLAsincosTable_TABLE_SIZEDivTwoPi       
+1     0000fe50  _CLAsincosTable_TwoPiDivTABLE_SIZE       
+1     0000fe52  _CLAsincosTable_TABLE_MASK               
+1     0000fe54  _CLAsincosTable_Coef0                    
+1     0000fe56  _CLAsincosTable_Coef1                    
+1     0000fe58  _CLAsincosTable_Coef1_pos                
+1     0000fe5a  _CLAsincosTable_Coef2                    
+1     0000fe5c  _CLAsincosTable_Coef3                    
+1     0000fe5e  _CLAsincosTable_Coef3_neg                
+1     0000fe60  _CLALNV2                                 
+1     0000fe60  _CLAsincosTableEnd                       
+1     0000fe62  _CLALNVe                                 
+1     0000fe64  _CLALNV10                                
+1     0000fe66  _CLABIAS                                 
+1     0000fe68  _CLALN_TABLE_MASK1                       
+1     0000fe6a  _CLALN_TABLE_MASK2                       
+1     0000fe6c  _CLALnTable                              
+1     0000ff32  _CLAINV1                                 
+1     0000ff32  _CLALnTableEnd                           
+1     0000ff34  _CLAINV2                                 
+1     0000ff36  _CLAINV3                                 
+1     0000ff38  _CLAINV4                                 
+1     0000ff3a  _CLAINV5                                 
+1     0000ff3c  _CLAINV6                                 
+1     0000ff3e  _CLAINV7                                 
+1     0000ff40  _CLALOG10                                
+1     0000ff42  _CLAExpTable                             
+1     0000fff4  _CLAExpTableEnd                          
+abs   000000e0  __STACK_SIZE                             
+abs   00601000  .TI.load_image                           
+abs   ffffffff  ___binit__                               
+abs   ffffffff  ___c_args__                              
+abs   ffffffff  ___cinit__                               
+abs   ffffffff  ___pinit__                               
+abs   ffffffff  binit                                    
+abs   ffffffff  cinit                                    
+abs   ffffffff  pinit                                    
+
+[156 symbols]

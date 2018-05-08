@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<DSS>
+	<SETUP>
+		<FPGA_REQUIRED>"FALSE"</FPGA_REQUIRED>
+		<ITERATIONS>
+			<NUMBER>"1"</NUMBER>
+		</ITERATIONS>
+		<CONFIG id="1">
+			<LOAD>
+				<PATH>"..\28004x_pmbus_slave\Debug\28004x_pmbus_slave.out"</PATH>
+				<CORE>"1"</CORE>
+				<ALIAS>"MASTER_CPU"</ALIAS>
+			</LOAD>
+			<LOAD>
+				<PATH>"..\28004x_pmbus_master\Debug\28004x_pmbus_master.out"</PATH>
+				<CORE>"2"</CORE>
+				<ALIAS>"SLAVE_CPU"</ALIAS>
+			</LOAD>
+		</CONFIG>
+	</SETUP>
+</DSS>

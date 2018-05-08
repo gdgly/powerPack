@@ -1,0 +1,83 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Each subdirectory must supply rules for building sources it contributes
+Example_28069Flash.obj: ../Example_28069Flash.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="Example_28069Flash.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_CSMPasswords.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_CSMPasswords.asm $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_CSMPasswords.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_CodeStartBranch.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_CodeStartBranch.asm $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_CodeStartBranch.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_DefaultIsr.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_DefaultIsr.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_DefaultIsr.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_EPwm.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_EPwm.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_EPwm.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_GlobalVariableDefs.obj: /home/eunwho/f28069/f2806x/headers/source/F2806x_GlobalVariableDefs.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_GlobalVariableDefs.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_PieCtrl.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_PieCtrl.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_PieCtrl.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_PieVect.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_PieVect.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_PieVect.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_SysCtrl.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_SysCtrl.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_SysCtrl.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_usDelay.obj: /home/eunwho/f28069/f2806x/common/source/F2806x_usDelay.asm $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_usDelay.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+f28069GpioSetup.obj: ../f28069GpioSetup.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/f28069/f2806x/headers/include" --include_path="/home/eunwho/f28069/f2806x/common/include" --include_path="/home/eunwho/f28069/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/f28069/libraries/math/FPUfastRTS/c28/include" --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="f28069GpioSetup.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+

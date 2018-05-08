@@ -1,0 +1,6 @@
+1525678746061	Rename resource 'singlePhaseInv'
+1525743749384	Delete resource 'powerPack/vfCtrl.c'
+1525753813620	Delete resource 'powerPack/commonModule.c'
+1525755060382	Delete resource 'powerPack/button_proc.c'
+1525761979517	Delete resource 'powerPack/MonitorProc.c'
+1525762518370	Delete resource 'powerPack/spaceVectorModulation.c'

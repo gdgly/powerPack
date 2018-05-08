@@ -1,0 +1,279 @@
+#include	<header.h>
+#include	<extern.h>
+
+double linear_eq(double x1, double x2, double y1, double y2, double x )
+{
+	double y;
+
+	y = (( y2-y1) / ( x2 - x1 )) * x  + (( y1 * x2 - y2 * x1 )/ (x2- x1));
+	return y;
+}
+
+void LPF1(double Ts,double pole,double in,double *out)
+{
+	*out+=pole*(in-*out)*Ts;
+}
+
+void Nop()
+{
+  asm ("      nop");
+}
+
+void SetSensorOffset()
+{
+}
+
+void PowerOnReset()
+{
+
+}
+
+unsigned long ulGetTime_mSec(unsigned long Start_mSec)
+{
+	unsigned long Temp;
+	 
+	if( CpuTimer0.InterruptCount < Start_mSec){
+		Temp = ((unsigned long )(0xFFFFFFFF) - Start_mSec) + CpuTimer0.InterruptCount; 		
+	}
+	else{
+		Temp = CpuTimer0.InterruptCount - Start_mSec ;
+	}
+	return Temp;
+}
+
+unsigned long ulGetNow_mSec( )
+{
+	return CpuTimer0.InterruptCount;
+
+}
+
+void delay_msecs( unsigned long ulmSec)
+{
+	unsigned long Start_mSec,ulTemp;
+
+	ulTemp =0;
+	Start_mSec = ulGetNow_mSec( );
+
+	while( ulTemp < ulmSec)
+	{
+		ulTemp = ulGetTime_mSec( Start_mSec );
+	}
+}
+
+int periodic_check(unsigned long  msec)
+{
+	static unsigned long count_msec=0;
+
+	if( ulGetTime_mSec(count_msec) > msec ){
+		count_msec = ulGetNow_mSec( );
+		return 0;
+	}
+	return -1;				
+}
+
+void InitChargeOn()
+{
+#if INIT_POWER_USE_PWM
+	gInitChargeFlag = 1;	// ePWM���� duty �� 1/4 �� �ϰ� PWM�� �Ѵ�.
+#else 
+	// INIT_CHARGE_SET;
+#endif
+}
+
+int iGetAinCmd(int * piCommand, double * pfReference)
+{
+	int iTemp;
+	iTemp = 0;
+
+	* piCommand =  CMD_NULL;
+	* pfReference = 0.0;
+	return iTemp;
+}
+
+void analog_cmd_proc(double * ana_ref)
+{
+	* ana_ref = analog_ref_a;		// debug
+}
+//------------------------------
+//
+//------------------------------
+
+void get_command( int * command, double * ref )
+{
+	int digital_cmd,sci_cmd,button_cmd;
+	double digital_reference,sci_ref, button_ref,ana_ref;
+
+	digital_input_proc( & digital_cmd, & digital_reference);
+	serial_com_proc( & sci_cmd, & sci_ref );
+	analog_cmd_proc( & ana_ref);
+	KeyInputProc(&button_cmd,&button_ref);
+
+// button�� ���� ������ �ɼǰ� ������ ������ ������ �ȴ�.
+	switch( run_input_select )
+	{
+	case 0: //  button input
+		* command = button_cmd;
+		* ref = button_ref;
+		break;
+
+	case 1: // ������ �Է¿� ���� �õ��� ���� 
+		* command = digital_cmd;
+		* ref = digital_reference;
+		break;
+
+	case 2: //  
+		* command = sci_cmd;
+		* ref = sci_ref;
+		break;
+
+	case 3: // �Ƴ��α� �Է�
+		* command = digital_cmd ;
+		* ref = analog_ref_a;
+		break;
+	default:
+		* command = CMD_NULL; 
+		break;
+	}
+	// ��ſ� ���� ������ �ֿ켱���� ó���Ѵ�. 
+	if( sci_cmd == CMD_SAVE){
+		* command = sci_cmd ;
+	}
+	if( button_cmd != CMD_NULL){
+		* command = button_cmd ;
+	}
+}
+
+void get_adc_offset()
+{
+	int LoopCtrl;
+
+	Uint32 RunTimeMsec,StartTimeMsec;
+	double u_offset_in, v_offset_in;
+	double u_offset_out, v_offset_out;
+	
+	UNION32 u32data;
+
+	load_sci_tx_mail_box( "\n***********************"); delay_msecs(10);
+	load_sci_tx_mail_box( "\n Start ADC Offset Calc "); delay_msecs(10);
+	load_sci_tx_mail_box( "\n***********************"); delay_msecs(10);
+
+	gfRunTime=0.0;
+	LoopCtrl = 1;
+	gMachineState = STATE_READY;
+
+	while(LoopCtrl == 1)
+	{
+		if( gfRunTime >= 5.0 ) LoopCtrl = 0;
+//		get_command(&cmd,&ref0);	// Command�� �Է� ���� 
+//		if( gPWMTripCode != 0 ) 	LoopCtrl = 0;
+//		if ( cmd == CMD_STOP)	LoopCtrl = 0; 
+
+		RunTimeMsec = ulGetTime_mSec( StartTimeMsec);
+		if(RunTimeMsec > 1){
+			StartTimeMsec = ulGetNow_mSec( );
+			u_offset_in = (double)giAdcUphase;
+			v_offset_in = (double)giAdcVphase;
+			LPF1(0.002,10.0,u_offset_in, & u_offset_out);
+			LPF1(0.002,10.0,v_offset_in, & v_offset_out);
+//			snprintf(gStr1,25,"\n u_offset=%10.1e :: ", offset_out);
+//			load_scic_tx_mail_box( gStr1) ;
+		}
+	}
+
+	if( gfRunTime >= 5.0 ){
+		adc_u_offset = (int)u_offset_out;
+		adc_v_offset = (int)v_offset_out;
+
+		u32data.word.word0 = adc_u_offset; write_code_2_eeprom(CODE_adc_u_offset,u32data);
+		u32data.word.word0 = adc_v_offset; write_code_2_eeprom(CODE_adc_v_offset,u32data);
+				
+		load_sci_tx_mail_box("\n*********************");delay_msecs(10);		
+		load_sci_tx_mail_box("\n OK Adc offset Saved ");delay_msecs(10);		
+		load_sci_tx_mail_box("\n*********************");delay_msecs(10);		
+	}
+}
+
+void get_adc_vdc_100()
+{
+	int LoopCtrl;
+
+	Uint32 RunTimeMsec,StartTimeMsec;
+	double adc_Vdc_in, adc_Vdc_out;
+	
+	UNION32 u32data;
+
+	load_sci_tx_mail_box( "\n***********************"); delay_msecs(10);
+	load_sci_tx_mail_box( "\n Start ADC at Vdc 100V "); delay_msecs(10);
+	load_sci_tx_mail_box( "\n***********************"); delay_msecs(10);
+
+	gfRunTime=0.0;
+	LoopCtrl = 1;
+	gMachineState = STATE_READY;
+
+	while(LoopCtrl == 1)
+	{
+		if( gfRunTime >= 1.0 ) LoopCtrl = 0;
+
+		RunTimeMsec = ulGetTime_mSec( StartTimeMsec);
+		if(RunTimeMsec > 1){
+			StartTimeMsec = ulGetNow_mSec( );
+			adc_Vdc_in = (double)giAdcVdc;
+			LPF1(0.002,10.0,adc_Vdc_in, & adc_Vdc_out);
+		}
+	}
+
+	if( gfRunTime >= 1.0 ){
+
+		adc_vdc_100 = adc_Vdc_out;
+		u32data.dword = adc_vdc_100; write_code_2_eeprom(CODE_adc_vdc_100,u32data);
+				
+		load_sci_tx_mail_box("\n*********************");delay_msecs(10);		
+		load_sci_tx_mail_box("\n OK adc_vdc_100 Saved");delay_msecs(10);		
+		load_sci_tx_mail_box("\n*********************");delay_msecs(10);		
+	}
+}
+
+void get_adc_vdc_300()
+{
+	int LoopCtrl;
+
+	Uint32 RunTimeMsec,StartTimeMsec;
+	double adc_Vdc_in, adc_Vdc_out;
+	
+	UNION32 u32data;
+
+	load_sci_tx_mail_box( "\n***********************"); delay_msecs(10);
+	load_sci_tx_mail_box( "\n Start ADC at Vdc 300V "); delay_msecs(10);
+	load_sci_tx_mail_box( "\n***********************"); delay_msecs(10);
+
+	gfRunTime=0.0;
+	LoopCtrl = 1;
+	gMachineState = STATE_READY;
+
+	while(LoopCtrl == 1)
+	{
+		if( gfRunTime >= 1.0 ) LoopCtrl = 0;
+
+		RunTimeMsec = ulGetTime_mSec( StartTimeMsec);
+		if(RunTimeMsec > 1){
+			StartTimeMsec = ulGetNow_mSec( );
+			adc_Vdc_in = (double)giAdcVdc;
+			LPF1(0.002,10.0,adc_Vdc_in, & adc_Vdc_out);
+		}
+	}
+
+	if( gfRunTime >= 1.0 ){
+
+		adc_vdc_300 = adc_Vdc_out;
+		u32data.dword = adc_vdc_300; write_code_2_eeprom(CODE_adc_vdc_300,u32data);
+				
+		load_sci_tx_mail_box("\n*********************");delay_msecs(10);		
+		load_sci_tx_mail_box("\n OK adc_vdc_300 Saved");delay_msecs(10);		
+		load_sci_tx_mail_box("\n*********************");delay_msecs(10);		
+	}
+}
+
+//---------------------------------
+// end of file
+//----------------------------------
+

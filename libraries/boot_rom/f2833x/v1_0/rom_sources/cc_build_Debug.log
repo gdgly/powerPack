@@ -1,0 +1,12 @@
+------------------------  f2833x_boot_rom.pjt - Debug  ------------------------
+[Init_Boot.asm] "C:\Program Files\C2000 Code Generation Tools 4.1.2\bin\cl2000" -g -q -pdr -fr"V:/A0322405_view/c2000_apps/c28xx/collateral/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "Init_Boot.asm"
+
+[ReservedSpace.asm] "C:\Program Files\C2000 Code Generation Tools 4.1.2\bin\cl2000" -g -q -pdr -fr"V:/A0322405_view/c2000_apps/c28xx/collateral/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "ReservedSpace.asm"
+
+[ti_test.asm] "C:\Program Files\C2000 Code Generation Tools 4.1.2\bin\cl2000" -g -q -pdr -fr"V:/A0322405_view/c2000_apps/c28xx/collateral/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "ti_test.asm"
+
+[Linking...] "C:\Program Files\C2000 Code Generation Tools 4.1.2\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

@@ -1,0 +1,472 @@
+/////////////////////////////////////////////////////////////////////////
+//
+//	Project Name 	: Inverter 
+//						  for 
+//	Fiele Name	 	: button_proc.c
+//
+//  Start 			: 2009.07.09 sunday
+//
+///////////////////////////////////////////////////////////////////////////
+#include	<header.h>
+#include	<extern.h>
+
+int	exp_sign_flag;
+int	num_sign_flag;
+
+int function_addr;
+
+#if BUTTON_PROC==0
+
+void KeyInputProc(int * cmd, double * ref ){}
+void enter_trip_mode( ){}
+void enter_root_mode(){}
+
+#else 
+
+int GetKeyTemp()
+{
+	int Input,KeySave;
+
+	Input = ( ZONE0_BUF[XINT_INPUT] | 0x00FF );
+	
+	if 		( Input == 0xE7FF ) KeySave = BTN_RESET;	
+	else if	( Input == 0xFEFF ) KeySave = BTN_ESC;
+	else if ( Input == 0xFDFF ) KeySave = BTN_DOWN; 
+	else if ( Input == 0xFBFF ) KeySave = BTN_RIGHT;	
+	else if ( Input == 0xF7FF ) KeySave = BTN_STOP;	
+	else if ( Input == 0xEFFF ) KeySave = BTN_RUN;	
+	else if ( Input == 0xDFFF ) KeySave = BTN_SAVE;	
+	else if ( Input == 0xBFFF ) KeySave = BTN_UP;	
+	else if ( Input == 0x7FFF ) KeySave = BTN_SET;	
+	else 						KeySave = BTN_NULL;
+
+	return KeySave;
+}
+
+int GetKey()
+{
+	int KeySave;
+
+	if((KeySave= GetKeyTemp()) != BTN_NULL )
+	{
+		delay_msecs(20);
+		if( ( KeySave = GetKeyTemp()) != BTN_NULL )
+		{	
+			while( GetKeyTemp() != BTN_NULL);
+		}
+		delay_msecs(20);		// off bound proc  
+	}
+	return KeySave;
+}
+
+void MmiErrMsgBlinkStart(char * string)
+{
+	// blink warning massage fnd for 3sec 
+	strncpy(warning_fnd_data,string,4);
+	warning_timer_msec = 3000;			
+	warning_fnd_flag = 1;
+}		
+
+void Enter_Select_Mode( int addr)
+{
+	fnd_digit_dp_all_off();
+	led_colon_off();
+	fnd_blink_all_off();
+
+	digit_position =  1;
+	fnd_blink_digit1_on();
+
+	fnd_buf[0] = 'F';
+	fnd_buf[1] =  addr/100;
+	fnd_buf[2] = (addr % 100 ) /10;
+	fnd_buf[3] = (addr % 10);
+					//  01234567890123456789
+	strncpy(MonitorMsg," SELECT FUNCTION    ",20);
+	button_input_state = BUTTON_SELECT_FUNCTION;
+}
+
+void enter_root_mode( )
+{
+	disp_fnd_mode = function_addr  = 0 ;
+	fnd_blink_all_off();
+
+	fnd_buf[0] = 'R';
+	fnd_buf[1] = 'E';
+	fnd_buf[2] = 'D';
+	fnd_buf[3] = 'Y';
+					//  01234567890123456789
+	strncpy(MonitorMsg," Inverter Ready     ",20);
+	button_input_state = BUTTON_ROOT;
+}
+
+void enter_trip_mode( )
+{
+	disp_fnd_mode = function_addr  = 0 ;
+	fnd_blink_all_off();
+	fnd_buf[0] = 'T';
+	fnd_buf[1] = 'R';
+	fnd_buf[2] = 'I';
+	fnd_buf[3] = 'P';
+					//  01234567890123456789
+	strncpy(MonitorMsg," Inverter Ready     ",20);
+	button_input_state = BUTTON_TRIP;
+}
+
+int EnterChangeDataState(int addr)
+{
+	int temp,cmd;
+	double	temp_data;   
+	char str[20];
+
+	UNION32 u32data;
+
+	cmd = CMD_READ_DATA;
+	
+	temp =  get_code_information( addr,cmd, & code_inform);	
+	if(temp){
+		strncpy(MonitorMsg," !Invaild Funcion Code    ",20);
+		strncpy(str,"ER99",4);
+		MmiErrMsgBlinkStart(str);
+		return -1;
+	}
+
+	led_all_off();			 
+	fnd_blink_all_off();
+	fnd_digit_dp_all_off();
+
+	fnd_digit0_dp_on();
+	fnd_digit2_dp_on();		// exponent임을 표시하기 위하여 
+
+	fnd_blink_digit0_on();
+	digit_position = 0;
+
+	if( addr < 800 )	read_eprom_data( addr, & u32data);
+	else{
+		code_inform.type = TYPE_DOUBLE;
+		u32data.dword = 0.0;
+	}
+
+	if(code_inform.type == TYPE_INTEGER) temp_data = (double)((int)(u32data.word.word0));
+	else		temp_data = u32data.dword;
+
+	snprintf(str,12,"%10.2e",temp_data);
+
+	if( str[1] == '-')  num_sign_flag = -1;
+	else				num_sign_flag = 1;
+
+	if( str[7] == '-')  exp_sign_flag = -1;
+	else				exp_sign_flag = 1;
+
+	fnd_buf[0] = str[2] -'0';
+	fnd_buf[1] = str[4] -'0';	 
+	fnd_buf[2] = str[5] -'0';	 
+	fnd_buf[3] = str[9] -'0';	 
+
+// fnd & led proc 
+	if(num_sign_flag < 0){	// 음수의 처리  
+		led_stop_on();
+		fnd_blink_stop_on();
+	}
+	else{
+		led_stop_off();
+		fnd_blink_stop_off();
+	}
+
+	if( exp_sign_flag < 0){ // 승수의 음수 처리 
+		led_alarm_on();
+		fnd_blink_alarm_on();
+	}
+	else{
+		led_alarm_off();
+		fnd_blink_alarm_off();
+	}
+// end of led and fnd_buf proc
+
+	button_input_state = BUTTON_CHANGE_DATA;
+	return 0;
+}
+
+void SelectFuntionKeyProc(int key_in)
+{
+	Nop();
+
+	switch(key_in){
+
+	case BTN_SET:
+		
+		function_addr  = fnd_buf[1]*100 ;
+		function_addr += fnd_buf[2] * 10 ;
+		function_addr += fnd_buf[3] ;
+
+		EnterChangeDataState(function_addr);      
+
+		break;
+
+	case BTN_ESC:
+		if( gMachineState == STATE_TRIP ) enter_trip_mode( );
+		else enter_root_mode( );
+		break;
+
+	case BTN_SAVE:
+		break;
+
+	case BTN_RIGHT:
+		fnd_blink_all_off();
+		switch( digit_position){
+			case 1 :  fnd_blink_digit2_on(); break;
+			case 2 :  fnd_blink_digit3_on(); break;
+			case 3 :  fnd_blink_digit1_on(); break;
+			default:
+				digit_position = 1;
+				fnd_blink_digit1_on();
+				break;
+		}
+		if( digit_position < 3 ) digit_position ++;
+		else					 digit_position = 1;
+		break;
+
+	case BTN_UP:
+		if( fnd_buf[digit_position] < 9 ) fnd_buf[digit_position]++;
+		else 							  fnd_buf[digit_position] = 0;
+		break;
+
+	case BTN_DOWN:
+		if( fnd_buf[digit_position] > 0 ) fnd_buf[digit_position] --;
+		else					  		  fnd_buf[digit_position] = 9;
+		break;
+	default:
+		break;
+	}
+}
+
+//=============================================
+//  코드데이터 입력 버튼의 처리 
+//=============================================
+
+void ChangeDataKeyProc(int key_in)
+{
+	int return_value;
+	char str[20];
+	double code_data;
+
+	switch(key_in){
+
+	case BTN_RUN:
+		break;
+
+	case BTN_STOP:
+		break;
+
+	case BTN_SET:
+		break;
+
+	case BTN_ESC:
+		Enter_Select_Mode( function_addr);
+		break;
+
+	case BTN_SAVE:
+
+		if(num_sign_flag < 0) str[0] ='-'; 
+		else 			    str[0] ='0'; 
+
+		if( exp_sign_flag < 0) str[6] ='-';
+		else 				str[6] ='0';
+
+		str[1] = fnd_buf[0]+'0';
+		str[2] = '.';
+		str[3] = fnd_buf[1] + '0';
+		str[4] = fnd_buf[2] + '0';
+		str[5] = 'e';
+		str[7] = '0';
+		str[8] = fnd_buf[3]+'0';
+		str[9] = 0;
+
+		code_data = (double)( atof( str ));
+
+		return_value = SaveDataProc(function_addr,code_data);
+		if(return_value==0){	//
+			fnd_buf[0] = 'S'; fnd_buf[1] = 'A';	fnd_buf[2] = 'V'; fnd_buf[3] = 'E';
+			fnd_blink_digit0_on();	fnd_blink_digit1_on();
+			fnd_blink_digit2_on();	fnd_blink_digit3_on();
+			delay_msecs(3000);
+		}				  
+		else {	//
+			fnd_buf[0] = 'F'; fnd_buf[1] = 'A';	fnd_buf[2] = 'L'; fnd_buf[3] = 'T';
+			fnd_blink_digit0_on();	fnd_blink_digit1_on();
+			fnd_blink_digit2_on();	fnd_blink_digit3_on();
+			delay_msecs(3000);
+		}				  
+		Enter_Select_Mode( function_addr);
+		break;
+
+	case BTN_RIGHT:
+
+		switch( digit_position){
+			case 0 :
+				fnd_blink_digit0_off();
+				fnd_blink_digit1_on();
+				 break;
+			case 1 :  
+				fnd_blink_digit1_off(); 
+				fnd_blink_digit2_on(); 
+				break;
+			case 2 :  
+				fnd_blink_digit2_off(); 
+				fnd_blink_digit3_on(); 
+				break;
+			case 3 :  
+				fnd_blink_digit3_off(); 
+				fnd_blink_digit0_on(); 
+				break;
+		}
+		if( digit_position < 3 ) digit_position ++;
+		else					 digit_position = 0;
+		break;
+
+	case BTN_UP:
+		if( digit_position == 0 ){
+			if( num_sign_flag >= 0){
+				if( fnd_buf[0] < 9 ) fnd_buf[0] ++;
+				else				fnd_buf[0] = 1;
+			}
+			else{
+				if( fnd_buf[0] > 1  ) fnd_buf[0] --;
+				else{
+					fnd_buf[0] = 0;
+					num_sign_flag = 1;
+					led_stop_off();
+					fnd_blink_stop_off();
+				}		
+			}
+		}
+		else if( digit_position == 3){
+			if( exp_sign_flag >= 0){
+				if( fnd_buf[3] < 9 ) fnd_buf[3] ++;
+				else				fnd_buf[3] = 1;
+			}
+			else{
+				if( fnd_buf[3] > 1  ) fnd_buf[3] --;
+				else{
+					fnd_buf[3] = 0;
+					exp_sign_flag = 1;
+					led_alarm_off();
+					fnd_blink_alarm_off();
+				}		
+			}
+		}
+		else{ 
+			if( fnd_buf[digit_position] < 9 ) fnd_buf[digit_position]++;
+			else 							  fnd_buf[digit_position] = 0;
+		}
+		break;
+
+	case BTN_DOWN:
+
+		if( digit_position == 0 ){
+			if( num_sign_flag >= 0){
+				if( fnd_buf[0] > 0 ) fnd_buf[0] --;
+				else{
+					fnd_buf[0] = 1;
+					num_sign_flag = -1;
+					led_stop_on();
+					fnd_blink_stop_on();
+				}		
+			}
+			else{
+				if( fnd_buf[0] < 9  ) fnd_buf[0] ++;
+				else				  fnd_buf[0] = 1;
+			}
+		}
+		else if( digit_position == 3){
+			if( exp_sign_flag >= 0){
+				if( fnd_buf[3] > 0 ) fnd_buf[3] --;
+				else{
+					fnd_buf[3] = 1;
+					exp_sign_flag = -1;
+					led_alarm_on();
+					fnd_blink_alarm_on();
+				}		
+			}
+			else{
+				if( fnd_buf[3] < 9  ) fnd_buf[3] ++;
+				else				  fnd_buf[3] = 1;
+			}
+		}
+		else{
+			if( fnd_buf[digit_position] > 0 ) fnd_buf[digit_position] --;
+			else					  		  fnd_buf[digit_position] = 9;
+		}
+		break;
+
+	default:
+		Nop();
+		break;
+	}
+}
+
+void KeyInputProc(int * button_cmd, double * button_ref)
+{
+	int key_in;
+
+	* button_cmd = CMD_NULL;
+	 
+	key_in = GetKey();
+
+	if( key_in == BTN_NULL){
+		* button_cmd = CMD_NULL;
+		return;
+	}
+
+	switch(button_input_state){
+		case BUTTON_SELECT_FUNCTION:
+			SelectFuntionKeyProc( key_in );
+			break;
+		case BUTTON_CHANGE_DATA:
+			ChangeDataKeyProc( key_in );
+			break;
+
+		case BUTTON_TRIP:
+			if		(key_in == BTN_STOP) * button_cmd = CMD_STOP;
+			else if	(key_in == BTN_UP) 	 * button_cmd = CMD_SPEED_UP;
+			else if	(key_in == BTN_DOWN) * button_cmd = CMD_SPEED_DOWN;
+			else if	(key_in == BTN_ESC ) * button_cmd = CMD_RESET;
+			else if	(key_in == BTN_SAVE ) * button_cmd = CMD_SAVE;
+			else if	(key_in == BTN_RIGHT ){
+				if( disp_fnd_mode < 0) disp_fnd_mode = 0;
+				else if( disp_fnd_mode < 3 ) disp_fnd_mode++;
+				else disp_fnd_mode = 0;
+			}
+			else if	(key_in == BTN_SET ){
+				function_addr = 0;
+				Enter_Select_Mode(function_addr);
+			}
+			else  * button_cmd = CMD_NULL;
+			break;
+
+		default :
+			button_input_state=BUTTON_ROOT;
+
+			if (key_in == BTN_RUN){
+				* button_cmd = CMD_START;
+				* button_ref = 0.1;			// debug
+			}
+			else if	(key_in == BTN_STOP) * button_cmd = CMD_STOP;
+			else if	(key_in == BTN_UP) 	 * button_cmd = CMD_SPEED_UP;
+			else if	(key_in == BTN_DOWN) * button_cmd = CMD_SPEED_DOWN;
+			else if	(key_in == BTN_ESC ) * button_cmd = CMD_RESET;
+			else if	(key_in == BTN_SAVE ) * button_cmd = CMD_SAVE;
+			else if	(key_in == BTN_RIGHT ){
+				if( disp_fnd_mode < 0) disp_fnd_mode = 0;
+				else if( disp_fnd_mode < 3 ) disp_fnd_mode++;
+				else disp_fnd_mode = 0;
+			}
+			else if	(key_in == BTN_SET ){
+				function_addr = 0;
+				Enter_Select_Mode(function_addr);
+			}
+			break;
+	}
+}
+#endif
+
+/* end of button_proc.c */

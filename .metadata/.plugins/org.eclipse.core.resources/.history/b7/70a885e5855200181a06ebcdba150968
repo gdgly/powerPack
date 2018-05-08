@@ -1,0 +1,272 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Each subdirectory must supply rules for building sources it contributes
+F2806x_Adc.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_Adc.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_Adc.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_CSMPasswords.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_CSMPasswords.asm $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_CSMPasswords.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_CodeStartBranch.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_CodeStartBranch.asm $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_CodeStartBranch.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_CpuTimers.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_CpuTimers.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_CpuTimers.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_DefaultIsr.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_DefaultIsr.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_DefaultIsr.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_GlobalVariableDefs.obj: /home/eunwho/powerPack/f2806x/headers/source/F2806x_GlobalVariableDefs.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_GlobalVariableDefs.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_PieCtrl.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_PieCtrl.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_PieCtrl.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_PieVect.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_PieVect.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_PieVect.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_SysCtrl.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_SysCtrl.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_SysCtrl.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+F2806x_usDelay.obj: /home/eunwho/powerPack/f2806x/common/source/F2806x_usDelay.asm $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="F2806x_usDelay.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+MonitorProc.obj: ../MonitorProc.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="MonitorProc.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+ParameterSet.obj: ../ParameterSet.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="ParameterSet.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+RTS_INT.obj: ../RTS_INT.C $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="RTS_INT.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+RefFunc.obj: ../RefFunc.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="RefFunc.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+SL_Vect.obj: ../SL_Vect.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="SL_Vect.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+SVM.obj: ../SVM.C $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="SVM.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Set_Par.obj: ../Set_Par.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="Set_Par.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+analog.obj: ../analog.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="analog.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+auto_tuning.obj: ../auto_tuning.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="auto_tuning.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+code_group_all.obj: ../code_group_all.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="code_group_all.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+code_proc.obj: ../code_proc.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="code_proc.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+common_module.obj: ../common_module.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="common_module.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+digital_inout.obj: ../digital_inout.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="digital_inout.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+f28069GpioSetup.obj: ../f28069GpioSetup.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="f28069GpioSetup.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+hyd_unit.obj: ../hyd_unit.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="hyd_unit.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+low_pass_filter.obj: ../low_pass_filter.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="low_pass_filter.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+main.obj: ../main.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="main.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+scia.obj: ../scia.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="scia.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+serial_com.obj: ../serial_com.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="serial_com.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+set_dac_point.obj: ../set_dac_point.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="set_dac_point.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+spaceVectorModulation.obj: ../spaceVectorModulation.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="spaceVectorModulation.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+switchingIrq.obj: ../switchingIrq.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="switchingIrq.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+test_run.obj: ../test_run.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="test_run.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+trip_proc.obj: ../trip_proc.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="trip_proc.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+udd_eeprom.obj: ../udd_eeprom.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="udd_eeprom.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+udd_timer_irq.obj: ../udd_timer_irq.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="udd_timer_irq.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+vector_control.obj: ../vector_control.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="vector_control.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+vf_contol.obj: ../vf_contol.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --include_path="/home/eunwho/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.3.LTS/include" --include_path="/home/eunwho/powerPack/f2806x/headers/include" --include_path="/home/eunwho/powerPack/f2806x/common/include" --include_path="/home/eunwho/powerPack/libraries/math/IQmath/c28/include" --include_path="/home/eunwho/powerPack/libraries/math/FPUfastRTS/c28/include" --include_path="/home/eunwho/powerPack/powerPack/include" --advice:performance=all --define="_DEBUG" --define="LARGE_MODEL" -g --diag_suppress=10063 --diag_warning=225 --issue_remarks --verbose_diagnostics --quiet --preproc_with_compile --preproc_dependency="vf_contol.d" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+

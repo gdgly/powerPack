@@ -1,0 +1,415 @@
+#include	<header.h>
+#include	<extern.h>
+
+
+// 매 PWM에서 확인한다. 
+void trip_recording(int trip_code,double trip_data,char * st)
+{
+	if(gRunFlag)	gTripSaveFlag = 1;
+	else			gTripSaveFlag = 0;
+
+	TripInfoNow.CODE	= trip_code;
+	TripInfoNow.DATA	= trip_data;
+	strncpy( TripInfoNow.MSG,st,20) ;
+
+	gMachineState 		= STATE_TRIP;
+	TripInfoNow.CURRENT	= Is_mag_rms;
+	TripInfoNow.VDC 	= Vdc;
+	TripInfoNow.HZ 		= Freq_out;
+}	
+
+int CheckOverCurrent( )
+{
+	static double OC_Timer = 0;
+
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(giAdcUphase) > 3500)){
+		trip_recording( ERR_OVER_CURRENT_U_PHASE, (double)(giAdcUphase),"I adc over U phase");
+		return ERR_OVER_CURRENT_U_PHASE;
+	}
+	
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(giAdcUphase) < 500)){
+		trip_recording( ERR_OVER_CURRENT_U_PHASE, (double)(giAdcUphase),"I adc under U_phase");
+		return ERR_OVER_CURRENT_U_PHASE;
+	}
+
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(giAdcVphase) > 3500)){
+		trip_recording( ERR_OVER_CURRENT_V_PHASE, (double)(giAdcVphase),"I adc over V_phase");
+		return ERR_OVER_CURRENT_V_PHASE;
+	}
+
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(giAdcVphase) < 500)){
+		trip_recording( ERR_OVER_CURRENT_V_PHASE, (double)(giAdcUphase),"I adc under V_phase");
+		return ERR_OVER_CURRENT_V_PHASE;
+	}
+
+	// 소프트웨어 프로텍션 : 과전류 보호
+	if( protect_reg.bit.OVER_I){
+		if(Is_mag > OverCurLimit )	OC_Timer += Ts;
+		else if(OC_Timer > Ts)		OC_Timer -= Ts;
+
+		if (OC_Timer > over_I_time ){
+			trip_recording( CODE_over_I_time,Is_mag,"OC Time out");
+			return	CODE_over_I_time;
+		}
+	} 
+	return 	0; 
+}
+
+//-----------------------------------------------
+//  과전압 저전압 보호 
+//-----------------------------------------------
+
+int CheckOverVolt( )
+{
+	static int OverVoltCount = 0;
+
+	if( protect_reg.bit.OVER_VOLT == 0 ) return 0;
+
+	if (Vdc > over_volt_set ) OverVoltCount++;
+	else if( OverVoltCount > 0) OverVoltCount --;
+
+	if (OverVoltCount > 5 )
+	{
+		OverVoltCount = 6;
+		trip_recording( CODE_over_current_level,Vdc,"Trip Over Volt");
+
+		return CODE_over_current_level;
+	}
+	return 0;
+}
+
+//-----------------------------------------------
+//  저전압 보호 
+//-----------------------------------------------
+
+int CheckUndeVolt( )
+{
+	static int UnderVoltCount = 0;
+
+	if( protect_reg.bit.UNVER_VOLT == 0 ) return 0;
+
+	if (Vdc < under_volt_set) 	UnderVoltCount++;
+	else if( UnderVoltCount > 0) 	UnderVoltCount--;
+
+	if (UnderVoltCount > 5 )
+	{
+		UnderVoltCount = 6;
+		trip_recording( CODE_under_volt_set,Vdc,"Trip Under Volt");
+
+		return CODE_under_volt_set;
+	}
+	return 0;
+}
+
+#define over_speed_ratio	1.5		// debug
+
+int CheckOverSpeed( )
+{
+	static int OverSpeedCount=0;
+
+	if( protect_reg.bit.OVER_SPEED == 0 ) return 0;
+
+	if ( fabs(rpm) > over_speed_level ) OverSpeedCount++;
+	else if( OverSpeedCount > 0) OverSpeedCount --;
+
+	if (OverSpeedCount > 5 )
+	{
+		OverSpeedCount = 6;
+		trip_recording( CODE_over_speed_level,rpm,"Trip Over Speed");
+
+		return CODE_over_speed_level;
+	}
+
+	return 0;
+}
+
+int CheckIGBTFault( )
+{
+	int temp;
+	static int trip_count=0;
+
+	if( protect_reg.bit.IGBT_FAULT == 0 ) return 0;
+
+	temp = PWM_FAULT;
+	if( temp==0) trip_count ++;
+	else if( trip_count > 0 ) trip_count--;
+	else trip_count = 0;
+
+	if(trip_count > 2){
+		trip_recording( ERR_PWM_IGBT,Is_abc[as],"TRIP_IGBT_U_PLUSE");
+		return ERR_PWM_IGBT;
+	}
+	if( ! DB_FAULT)
+	{
+		trip_recording( ERR_DB_IGBT,Is_abc[as],"TRIP_IGBT_DB");
+		return ERR_DB_IGBT;
+	}
+	return 0;
+}
+
+int CheckOverHeat( )
+{
+	static int OverHeatCount = 0;
+
+	if( protect_reg.bit.OVER_HEAT == 0 ) return 0;
+
+
+//	if( OVER_HEAT )					OverHeatCount ++;
+//	else if( OverHeatCount > 0) 	OverHeatCount--;
+
+	if( OverHeatCount > 10 )	// debug// Low --> High
+	{
+		OverHeatCount = 11;
+		trip_recording( ERR_OVER_HEAT,Is_mag_rms,"TRIP Over Heat");
+		return ERR_OVER_HEAT;
+	}
+	return 0 ;
+}
+
+//-----------------------------------------------
+//
+//  보호 기능 
+//		매 스위칭 마다 이를 검토 한다. 
+//----------------------------------------------
+int trip_check()
+{
+	int TripCode;
+
+	TripCode = 0;
+
+	if( ( TripCode = CheckOverCurrent()) != 0 ) return TripCode ;	// debug
+	if( ( TripCode = CheckOverVolt()   ) != 0 ) return TripCode ;
+	if( ( TripCode = CheckUndeVolt()   ) != 0 ) return TripCode ;	// 최종적으로 점검을 한다. 
+	if( ( TripCode = CheckOverSpeed()  ) != 0 ) return TripCode ;
+	if( ( TripCode = CheckOverHeat()   ) != 0 ) return TripCode ;
+	if( ( TripCode = CheckIGBTFault()  ) != 0 ) return TripCode ;
+	return TripCode;
+}
+
+//-----------------------------------
+// 트립 발생 릴레이를 On 하고 
+// Reset를 기다린다. 
+//-----------------------------------
+// Trip Message는 트립이 발생된 순간에 저장을 한다. 
+//
+
+void TripProc( )
+{
+	int iCommand;
+	int LoopCtrl;
+	double fReference;
+	char str[30];
+
+	str[29] = 0;
+
+	EALLOW;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO0 	= 0;  // GPIO0 = PWM1A
+	GpioCtrlRegs.GPAMUX1.bit.GPIO1 	= 0;  // GPIO1 = PWM1B
+	GpioCtrlRegs.GPAMUX1.bit.GPIO2 	= 0;  // GPIO2 = PWM2A
+	GpioCtrlRegs.GPAMUX1.bit.GPIO3 	= 0;  // GPIO3 = PWM2B
+	GpioCtrlRegs.GPAMUX1.bit.GPIO4 	= 0;  // GPIO4 = PWM3A
+	GpioCtrlRegs.GPAMUX1.bit.GPIO5 	= 0;  // GPIO5 = PWM3B
+	EDIS;
+
+	EPwm1Regs.ETSEL.bit.INTEN = 0;       // debug
+	gMachineState = STATE_TRIP;
+
+	DC_CONTACT_CLEAR;		// Main Charge Relay Off
+
+//	TRIP_OUT_SET;		debug
+
+	GetTimeAndDateStr(str);
+	strncpy( TripInfoNow.TIME,str,20);
+
+//	if( gTripSaveFlag == 1) SaveTripDataToEeprom();   // _debug
+
+	load_sci_tx_mail_box("*************************\n") ;
+	load_sci_tx_mail_box( TripInfoNow.MSG) ;
+	load_sci_tx_mail_box(" \n") ;
+	load_sci_tx_mail_box( TripInfoNow.TIME) ;
+	load_sci_tx_mail_box(" \n") ;
+	snprintf( str,20,"TripCode =%4d \n",TripInfoNow.CODE);
+	load_sci_tx_mail_box(str);
+	load_sci_tx_mail_box("*************************\n") ;
+
+	LoopCtrl = CMD_NULL;
+
+	enter_trip_mode();
+
+	while( LoopCtrl != CMD_RESET )
+	{
+		monitor_proc();
+		get_command( & iCommand, & fReference);	// Command를 입력 받음 				
+		if( iCommand == CMD_RESET) LoopCtrl = CMD_RESET;
+		Nop();
+	}
+	for( ; ; ) // system reset 
+	{
+		gMachineState = STATE_POWER_ON;
+		Nop();
+		asm (" .ref _c_int00"); // ;Branch to start of boot.asm in RTS library
+		asm (" LB _c_int00"); // ;Branch to start of boot.asm in RTS library
+	}
+}
+
+void GetTripInfo(int Point,TRIP_INFO * TripData )
+{
+	int TripDataPoint;
+	int TripBaseAddr;
+	int iTemp;
+	char str[30]={0};
+	UNION32 u32data;
+
+	if( Point == 0){
+
+//		* TripData = &TripInfoNow;
+		TripData->CURRENT 	= TripInfoNow.CURRENT;
+		TripData->DATA 		= TripInfoNow.DATA;
+		TripData->HZ 		= TripInfoNow.HZ;
+		TripData->CODE 		= TripInfoNow.CODE;
+		TripData->VDC 		= TripInfoNow.VDC;
+		strncpy(TripData->MSG  ,TripInfoNow.MSG,20);
+		strncpy(TripData->TIME ,TripInfoNow.TIME,20);
+		return ;
+	}
+
+	I2CA_ReadData(ADDR_24LC32,EPROM_ADDR_TRIP_POINT,&TripDataPoint);
+
+// erased  
+	if( ( 0 > Point ) || ( Point > 9) || (TripDataPoint == 0x00ff))
+	{
+		TripData->CURRENT = 0.0;
+		TripData->DATA = 0.0;
+		TripData->HZ = 0.0;
+		TripData->CODE = 0.0;
+		TripData->VDC = 0.0;
+		if( TripDataPoint == 0x00ff){
+			strncpy(TripData->MSG  ," NO TRIP DATA       ",20);
+			strncpy(TripData->TIME ,"2008:07:24  00:57:00",20);
+		}
+		else {
+			strncpy(TripData->MSG  ," Invalid Trip Code  ",20);
+			strncpy(TripData->TIME ,"2008:07:24  00:57:00",20);
+		}
+		return ;
+	}
+
+	if( (TripDataPoint<0)||(TripDataPoint>8)){
+		I2CA_WriteData(ADDR_24LC32, EPROM_ADDR_TRIP_POINT,0);
+		TripDataPoint = 0;
+	}
+
+// 저장된 립 데이터를 구한다. 
+	iTemp = TripDataPoint - Point + 1;		// iPoint = 1~9;
+
+	if( iTemp < 0 ) iTemp += 8;
+
+	TripBaseAddr = TRIP_BACKUP_ADDR + iTemp * 100;
+
+	// Code
+	read_eprom_data( TripBaseAddr+ 0, & u32data);
+		TripData->CODE =  u32data.dword;
+
+	// Data
+	read_eprom_data( TripBaseAddr+ 4, & u32data);
+		TripData->CURRENT =  u32data.dword;
+
+	// Current
+	read_eprom_data( TripBaseAddr+ 8, & u32data);
+	TripData->CURRENT =  u32data.dword;
+
+	// HZ
+	read_eprom_data( TripBaseAddr+ 12, & u32data);
+	TripData->HZ =  u32data.dword;
+
+	// VDC
+	read_eprom_data( TripBaseAddr+16, & u32data);
+	TripData->VDC =  u32data.dword;
+
+	// Time
+	ReadTripString( TripBaseAddr+20,str);
+	strncpy(TripData->TIME,str,20);
+
+	ReadTripString( TripBaseAddr+20+30,str);
+	strncpy(TripData->MSG,str,20);
+}
+
+void WriteTripString(int StartAddr, char * str)
+{
+	int i;
+	int Addr;
+	int string[21]={0};
+	
+	for(i=0;i<20;i++) string[i] = (int)(*(str ++));
+
+	Addr = StartAddr;
+
+	for(i=0;i<20;i++) I2CA_WriteData(ADDR_24LC32,Addr+i,string[i]);
+}
+
+void ReadTripString(int StartAddr, char * str)
+{
+	int i;
+	int Addr;
+	int iTemp;	
+	char StrBuf[30];
+
+	Addr = StartAddr;
+
+	for(i=0;i<20;i++){
+		I2CA_ReadData(ADDR_24LC32,Addr+i,&iTemp);
+		StrBuf[i] = (char)(iTemp);
+	}
+	StrBuf[20] =0;
+	strncpy(str,StrBuf,20);
+}
+
+void SaveTripDataToEeprom()
+{
+	int TripDataPoint,TripBaseAddr;
+	char str[30];
+	UNION32 u32data;
+
+	I2CA_ReadData(ADDR_24LC32,EPROM_ADDR_TRIP_POINT,&TripDataPoint);
+
+	if( TripDataPoint == 0x00FF) TripDataPoint = 0;
+	else TripDataPoint ++;
+	if( TripDataPoint >= 9 ) TripDataPoint = 0;
+	
+	I2CA_WriteData(ADDR_24LC32, EPROM_ADDR_TRIP_POINT, TripDataPoint);			
+	 
+	TripBaseAddr = TRIP_BACKUP_ADDR + TripDataPoint * 100;
+
+// Code
+	u32data.dword = TripInfoNow.CODE;
+	write_code_2_eeprom( TripBaseAddr+ 0, u32data);
+
+// Data
+	u32data.dword = TripInfoNow.DATA;
+	write_code_2_eeprom( TripBaseAddr+ 4, u32data);
+
+// Current
+	u32data.dword = TripInfoNow.CURRENT;
+	write_code_2_eeprom( TripBaseAddr+ 8, u32data);
+
+// HZ
+	u32data.dword = TripInfoNow.HZ;
+	write_code_2_eeprom( TripBaseAddr+ 12, u32data);
+
+// VDC
+	u32data.dword = TripInfoNow.VDC;
+	write_code_2_eeprom( TripBaseAddr+16, u32data);
+
+// Time
+	strncpy(str,TripInfoNow.TIME,20);
+	WriteTripString( TripBaseAddr+20,str);
+
+// Msg
+	strncpy(str,TripInfoNow.MSG,20);
+	WriteTripString( TripBaseAddr+20+30,str);
+}
+
+//------------------------------
+// End
+//------------------------------
+

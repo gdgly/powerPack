@@ -1,0 +1,14 @@
+#include	<header.h>
+#include	<extern.h>
+
+void monitor_proc()		// need_edit
+{
+}
+
+void GetInputMark(char * str)
+{
+}
+//==================================
+// End of file.
+//==================================
+

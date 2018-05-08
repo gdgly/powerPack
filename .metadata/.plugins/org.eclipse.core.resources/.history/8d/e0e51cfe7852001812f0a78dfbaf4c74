@@ -1,0 +1,279 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CMD_SRCS += \
+../F28069_eunwho.cmd \
+/home/eunwho/powerPack/f2806x/headers/cmd/F2806x_Headers_nonBIOS.cmd \
+../ram_test.cmd 
+
+ASM_SRCS += \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_CSMPasswords.asm \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_CodeStartBranch.asm \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_usDelay.asm 
+
+C_UPPER_SRCS += \
+../RTS_INT.C \
+../SVM.C 
+
+C_SRCS += \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_Adc.c \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_CpuTimers.c \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_DefaultIsr.c \
+/home/eunwho/powerPack/f2806x/headers/source/F2806x_GlobalVariableDefs.c \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_PieCtrl.c \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_PieVect.c \
+/home/eunwho/powerPack/f2806x/common/source/F2806x_SysCtrl.c \
+../MonitorProc.c \
+../ParameterSet.c \
+../RefFunc.c \
+../SL_Vect.c \
+../Set_Par.c \
+../TripProc.c \
+../analog.c \
+../auto_tuning.c \
+../button_proc.c \
+../code_group_all.c \
+../code_proc.c \
+../common_module.c \
+../digital_inout.c \
+../f28069GpioSetup.c \
+../hyd_unit.c \
+../low_pass_filter.c \
+../main.c \
+../scia.c \
+../serial_com.c \
+../set_dac_point.c \
+../spaceVectorModulation.c \
+../switchingIrq.c \
+../test_run.c \
+../trip_proc.c \
+../udd_eeprom.c \
+../udd_timer_irq.c \
+../vector_control.c \
+../vf_contol.c 
+
+C_UPPER_DEPS += \
+./RTS_INT.d \
+./SVM.d 
+
+C_DEPS += \
+./F2806x_Adc.d \
+./F2806x_CpuTimers.d \
+./F2806x_DefaultIsr.d \
+./F2806x_GlobalVariableDefs.d \
+./F2806x_PieCtrl.d \
+./F2806x_PieVect.d \
+./F2806x_SysCtrl.d \
+./MonitorProc.d \
+./ParameterSet.d \
+./RefFunc.d \
+./SL_Vect.d \
+./Set_Par.d \
+./TripProc.d \
+./analog.d \
+./auto_tuning.d \
+./button_proc.d \
+./code_group_all.d \
+./code_proc.d \
+./common_module.d \
+./digital_inout.d \
+./f28069GpioSetup.d \
+./hyd_unit.d \
+./low_pass_filter.d \
+./main.d \
+./scia.d \
+./serial_com.d \
+./set_dac_point.d \
+./spaceVectorModulation.d \
+./switchingIrq.d \
+./test_run.d \
+./trip_proc.d \
+./udd_eeprom.d \
+./udd_timer_irq.d \
+./vector_control.d \
+./vf_contol.d 
+
+OBJS += \
+./F2806x_Adc.obj \
+./F2806x_CSMPasswords.obj \
+./F2806x_CodeStartBranch.obj \
+./F2806x_CpuTimers.obj \
+./F2806x_DefaultIsr.obj \
+./F2806x_GlobalVariableDefs.obj \
+./F2806x_PieCtrl.obj \
+./F2806x_PieVect.obj \
+./F2806x_SysCtrl.obj \
+./F2806x_usDelay.obj \
+./MonitorProc.obj \
+./ParameterSet.obj \
+./RTS_INT.obj \
+./RefFunc.obj \
+./SL_Vect.obj \
+./SVM.obj \
+./Set_Par.obj \
+./TripProc.obj \
+./analog.obj \
+./auto_tuning.obj \
+./button_proc.obj \
+./code_group_all.obj \
+./code_proc.obj \
+./common_module.obj \
+./digital_inout.obj \
+./f28069GpioSetup.obj \
+./hyd_unit.obj \
+./low_pass_filter.obj \
+./main.obj \
+./scia.obj \
+./serial_com.obj \
+./set_dac_point.obj \
+./spaceVectorModulation.obj \
+./switchingIrq.obj \
+./test_run.obj \
+./trip_proc.obj \
+./udd_eeprom.obj \
+./udd_timer_irq.obj \
+./vector_control.obj \
+./vf_contol.obj 
+
+ASM_DEPS += \
+./F2806x_CSMPasswords.d \
+./F2806x_CodeStartBranch.d \
+./F2806x_usDelay.d 
+
+OBJS__QUOTED += \
+"F2806x_Adc.obj" \
+"F2806x_CSMPasswords.obj" \
+"F2806x_CodeStartBranch.obj" \
+"F2806x_CpuTimers.obj" \
+"F2806x_DefaultIsr.obj" \
+"F2806x_GlobalVariableDefs.obj" \
+"F2806x_PieCtrl.obj" \
+"F2806x_PieVect.obj" \
+"F2806x_SysCtrl.obj" \
+"F2806x_usDelay.obj" \
+"MonitorProc.obj" \
+"ParameterSet.obj" \
+"RTS_INT.obj" \
+"RefFunc.obj" \
+"SL_Vect.obj" \
+"SVM.obj" \
+"Set_Par.obj" \
+"TripProc.obj" \
+"analog.obj" \
+"auto_tuning.obj" \
+"button_proc.obj" \
+"code_group_all.obj" \
+"code_proc.obj" \
+"common_module.obj" \
+"digital_inout.obj" \
+"f28069GpioSetup.obj" \
+"hyd_unit.obj" \
+"low_pass_filter.obj" \
+"main.obj" \
+"scia.obj" \
+"serial_com.obj" \
+"set_dac_point.obj" \
+"spaceVectorModulation.obj" \
+"switchingIrq.obj" \
+"test_run.obj" \
+"trip_proc.obj" \
+"udd_eeprom.obj" \
+"udd_timer_irq.obj" \
+"vector_control.obj" \
+"vf_contol.obj" 
+
+C_DEPS__QUOTED += \
+"F2806x_Adc.d" \
+"F2806x_CpuTimers.d" \
+"F2806x_DefaultIsr.d" \
+"F2806x_GlobalVariableDefs.d" \
+"F2806x_PieCtrl.d" \
+"F2806x_PieVect.d" \
+"F2806x_SysCtrl.d" \
+"MonitorProc.d" \
+"ParameterSet.d" \
+"RefFunc.d" \
+"SL_Vect.d" \
+"Set_Par.d" \
+"TripProc.d" \
+"analog.d" \
+"auto_tuning.d" \
+"button_proc.d" \
+"code_group_all.d" \
+"code_proc.d" \
+"common_module.d" \
+"digital_inout.d" \
+"f28069GpioSetup.d" \
+"hyd_unit.d" \
+"low_pass_filter.d" \
+"main.d" \
+"scia.d" \
+"serial_com.d" \
+"set_dac_point.d" \
+"spaceVectorModulation.d" \
+"switchingIrq.d" \
+"test_run.d" \
+"trip_proc.d" \
+"udd_eeprom.d" \
+"udd_timer_irq.d" \
+"vector_control.d" \
+"vf_contol.d" 
+
+C_UPPER_DEPS__QUOTED += \
+"RTS_INT.d" \
+"SVM.d" 
+
+ASM_DEPS__QUOTED += \
+"F2806x_CSMPasswords.d" \
+"F2806x_CodeStartBranch.d" \
+"F2806x_usDelay.d" 
+
+C_SRCS__QUOTED += \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_Adc.c" \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_CpuTimers.c" \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_DefaultIsr.c" \
+"/home/eunwho/powerPack/f2806x/headers/source/F2806x_GlobalVariableDefs.c" \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_PieCtrl.c" \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_PieVect.c" \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_SysCtrl.c" \
+"../MonitorProc.c" \
+"../ParameterSet.c" \
+"../RefFunc.c" \
+"../SL_Vect.c" \
+"../Set_Par.c" \
+"../TripProc.c" \
+"../analog.c" \
+"../auto_tuning.c" \
+"../button_proc.c" \
+"../code_group_all.c" \
+"../code_proc.c" \
+"../common_module.c" \
+"../digital_inout.c" \
+"../f28069GpioSetup.c" \
+"../hyd_unit.c" \
+"../low_pass_filter.c" \
+"../main.c" \
+"../scia.c" \
+"../serial_com.c" \
+"../set_dac_point.c" \
+"../spaceVectorModulation.c" \
+"../switchingIrq.c" \
+"../test_run.c" \
+"../trip_proc.c" \
+"../udd_eeprom.c" \
+"../udd_timer_irq.c" \
+"../vector_control.c" \
+"../vf_contol.c" 
+
+ASM_SRCS__QUOTED += \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_CSMPasswords.asm" \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_CodeStartBranch.asm" \
+"/home/eunwho/powerPack/f2806x/common/source/F2806x_usDelay.asm" 
+
+C_UPPER_SRCS__QUOTED += \
+"../RTS_INT.C" \
+"../SVM.C" 
+
+

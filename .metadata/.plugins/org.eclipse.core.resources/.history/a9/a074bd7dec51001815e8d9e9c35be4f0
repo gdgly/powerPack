@@ -1,0 +1,380 @@
+//
+// filename 	: trip_proc.c 
+// projectname 	: F28035 inverter
+// 					PCB --> pag.ls.0503  
+// data			; start 2012.11.28 ~		
+//					by cheoung soon gil  
+// 
+#include	<header.h>
+#include	<extern.h>
+
+void trip_recording(int trip_code,float trip_data,char * st)
+{
+
+    TripInfoNow.CODE    = trip_code;
+    TripInfoNow.DATA    = trip_data;
+    strncpy( TripInfoNow.MSG,st,30) ;
+
+    gMachineState       = STATE_TRIP;
+    TripInfoNow.CURRENT = rmsIm;
+    TripInfoNow.VDC     = lpfVdc;
+    TripInfoNow.RPM     = codeRateRpm * reference_out;
+
+    if(gRunFlag)    gTripSaveFlag = 1;
+    else            gTripSaveFlag = 0;
+}
+
+int CheckOverCurrent( )
+{
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(adcIm) > 3500)){
+        trip_recording( ERR_OVER_CURRENT_U_PHASE, (float)(adcIm),"I adc over U ph");
+		return ERR_OVER_CURRENT_U_PHASE;
+	}
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(adcIm) < 500)){
+        trip_recording( ERR_OVER_CURRENT_U_PHASE, (float)(adcIm),"I adc under U ph");
+		return ERR_OVER_CURRENT_U_PHASE;
+	}
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(adcIa) > 3500)){
+        trip_recording( ERR_OVER_CURRENT_V_PHASE, (float)(adcIa),"I adc over V ph");
+		return ERR_OVER_CURRENT_V_PHASE;
+	}
+	if(( protect_reg.bit.OVER_I_ADC)&&( abs(adcIa) < 500)){
+        trip_recording( ERR_OVER_CURRENT_V_PHASE, (float)(adcIa),"I adc under V ph");
+		return ERR_OVER_CURRENT_V_PHASE;
+	}
+	return 	0; 
+}
+#define CODE_OC_level 		301
+#define OVER_V_LEVEL        380.0
+int CheckOverVolt( )
+{
+	static int OverVoltCount = 0;
+
+	if( protect_reg.bit.OVER_VOLT == 0 ) return 0;
+
+	if (lpfVdc > OVER_V_LEVEL ) OverVoltCount++;
+	else if( OverVoltCount > 0) OverVoltCount --;
+	else    OverVoltCount = 0;
+
+	if (OverVoltCount > 5 )
+	{
+		OverVoltCount = 6;
+        trip_recording( CODE_OC_level, lpfVdc,"Over Voltage");
+		return CODE_OC_level;
+	}
+	return 0;
+}
+
+#define UNDER_VOLT_LEVEL     180.0
+int CheckUndeVolt( )
+{
+	static int UnderVoltCount = 0;
+
+	if( protect_reg.bit.UNVER_VOLT == 0 ) return 0;
+
+	if (lpfVdc < UNDER_VOLT_LEVEL) 	UnderVoltCount++;
+	else if( UnderVoltCount > 0) 	UnderVoltCount--;
+	else                            UnderVoltCount = 0;
+
+	if (UnderVoltCount > 5 )
+	{
+		UnderVoltCount = 6;
+        trip_recording( CODE_OC_level, lpfVdc,"Under Voltage");
+		return CODE_under_volt_set;
+	}
+	return 0;
+}
+
+int CheckIGBTFault( )
+{
+	if( GATE_DRIVER_FAULT == 0){
+        trip_recording( ERR_PWM, 0.0,"Trip GateDriver");
+	    return ERR_PWM;
+	}
+	return 0;
+}
+
+int CheckOverHeat( )
+{
+	static int OverHeatCount = 0;
+
+	if( protect_reg.bit.OVER_HEAT == 0 ) return 0;
+	if( adcIgbtTemperature < 1000 )		OverHeatCount++;
+	else if( OverHeatCount > 0) 	    OverHeatCount--;
+
+	if( OverHeatCount > 10 ){	// debug// Low --> High
+		OverHeatCount = 11;
+        trip_recording( ERR_OVER_HEAT, 11.0,"Trip Over Heat");
+		return ERR_OVER_HEAT;
+	}
+	return 0 ;
+}
+
+int trip_check()
+{
+	int TripCode;
+	TripCode = 0;
+	if( ( TripCode = CheckOverCurrent()) != 0 ) return TripCode ;	//
+	if( ( TripCode = CheckOverVolt()   ) != 0 ) return TripCode ;
+	if( ( TripCode = CheckUndeVolt()   ) != 0 ) return TripCode ;	//
+	if( ( TripCode = CheckOverHeat()   ) != 0 ) return TripCode ;
+	if( ( TripCode = CheckIGBTFault()  ) != 0 ) return TripCode ;
+	return TripCode;
+}
+
+void GetTripInfo(int Point,TRIP_INFO * TripData )
+{
+	int TripDataPoint;
+	int TripBaseAddr;
+	int iTemp;
+	char str[30]={0};
+	UNION32 u32data;
+
+	strncpy(TripData->MSG ,NULL,41);
+
+	if( Point == 0){
+//		* TripData = &TripInfoNow;
+		TripData->CURRENT 	= TripInfoNow.CURRENT;
+		TripData->DATA 		= TripInfoNow.DATA;
+		TripData->RPM 		= TripInfoNow.RPM;
+		TripData->CODE 		= TripInfoNow.CODE;
+		TripData->VDC 		= TripInfoNow.VDC;
+		strncpy(TripData->MSG  ,TripInfoNow.MSG,20);
+		return ;
+	}
+
+	I2CA_ReadData(ADDR_24LC32,EPROM_ADDR_TRIP_POINT,&TripDataPoint);
+	if( ( 1 > Point ) || ( Point > 10) || (TripDataPoint == 0x00ff))
+	{
+		TripData->CURRENT = 0.0;
+		TripData->DATA = 0.0;
+		TripData->RPM = 0.0;
+		TripData->CODE = 0.0;
+		TripData->VDC = 0.0;
+
+		if( TripDataPoint == 0x00ff) strncpy(TripData->MSG  ," NO TRIP DATA       ",20);
+		else  strncpy(TripData->MSG  ," Invalid Trip Code  ",20);
+
+		return ;
+	}
+
+	if( (TripDataPoint<1)||(TripDataPoint>10)){
+		I2CA_WriteData(ADDR_24LC32, EPROM_ADDR_TRIP_POINT,1);
+		TripDataPoint = 1;
+	}
+	EepromSaveFlag = 1;
+	iTemp = TripDataPoint - Point + 1;		// iPoint = 1~10;
+	if( iTemp <= 0 ) iTemp += 10;
+	TripBaseAddr = TRIP_BACKUP_ADDR + iTemp * 100;
+	read_eprom_data( TripBaseAddr+ 0, & u32data);
+		TripData->CODE =  u32data.dword;
+
+	// Data
+	read_eprom_data( TripBaseAddr+ 4, & u32data);
+		TripData->CURRENT =  u32data.dword;
+
+	// Current
+	read_eprom_data( TripBaseAddr+ 8, & u32data);
+	TripData->CURRENT =  u32data.dword;
+
+	// HZ
+	read_eprom_data( TripBaseAddr+ 12, & u32data);
+	TripData->RPM =  u32data.dword;
+
+	// VDC
+	read_eprom_data( TripBaseAddr+16, & u32data);
+	TripData->VDC =  u32data.dword;
+
+	// Time
+	ReadTripString( TripBaseAddr+20,str);
+
+	ReadTripString( TripBaseAddr+40,str);
+	strncpy(TripData->MSG,str,20);
+
+	EepromSaveFlag = 0;
+}
+
+void WriteTripString(int StartAddr, char * str)
+{
+	int i;
+	int Addr;
+	int string[21]={0};
+	
+	for(i=0;i<20;i++) string[i] = (int)(*(str ++));
+
+	Addr = StartAddr;
+
+	for(i=0;i<20;i++) I2CA_WriteData(ADDR_24LC32,Addr+i,string[i]);
+}
+
+void ReadTripString(int StartAddr, char * str)
+{
+	int i;
+	int Addr;
+	int iTemp;	
+	char StrBuf[30];
+
+	Addr = StartAddr;
+
+	for(i=0;i<20;i++){
+		I2CA_ReadData(ADDR_24LC32,Addr+i,&iTemp);
+		StrBuf[i] = (char)(iTemp);
+	}
+	StrBuf[20] =0;
+	strncpy(str,StrBuf,20);
+}
+
+void SaveTripDataToEeprom()
+{
+	int TripDataPoint,TripBaseAddr;
+	char str[30];
+	UNION32 u32data;
+
+	I2CA_ReadData(ADDR_24LC32,EPROM_ADDR_TRIP_POINT,&TripDataPoint);
+
+	if( TripDataPoint == 0x00FF) TripDataPoint = 1;
+	else TripDataPoint ++;
+
+	if( TripDataPoint > 10 ) TripDataPoint = 1;
+	
+	I2CA_WriteData(ADDR_24LC32, EPROM_ADDR_TRIP_POINT, TripDataPoint);			
+	 
+	TripBaseAddr = TRIP_BACKUP_ADDR + TripDataPoint * 100;
+
+	EepromSaveFlag = 1;
+// Code
+	u32data.dword = TripInfoNow.CODE;
+	write_code_2_eeprom( TripBaseAddr+ 0, u32data);
+
+// Data
+	u32data.dword = TripInfoNow.DATA;
+	write_code_2_eeprom( TripBaseAddr+ 4, u32data);
+
+// Current
+	u32data.dword = TripInfoNow.CURRENT;
+	write_code_2_eeprom( TripBaseAddr+ 8, u32data);
+
+// RPM
+	u32data.dword = TripInfoNow.RPM;
+	write_code_2_eeprom( TripBaseAddr+ 12, u32data);
+
+// VDC
+	u32data.dword = TripInfoNow.VDC;
+	write_code_2_eeprom( TripBaseAddr+16, u32data);
+
+// Msg
+	strncpy(str,TripInfoNow.MSG,20);
+	WriteTripString( TripBaseAddr+40,str);
+
+	EepromSaveFlag = 0;
+}
+
+void ClearTripDataToEeprom()
+{
+	int TripBaseAddr = 0;
+	int TripDataPoint;
+	int TripPointCount;
+	char str[30];
+	UNION32 u32data;
+
+	EepromSaveFlag = 1;
+
+	u32data.dword = 0.0;
+
+	load_sci_tx_mail_box("WAIT FOR CLEAR DATA!");
+
+	for(TripPointCount = 1; TripPointCount <= 10; TripPointCount++)
+	{
+		I2CA_ReadData(ADDR_24LC32,EPROM_ADDR_TRIP_POINT,&TripDataPoint);
+
+		if( TripDataPoint == 0x00FF) TripDataPoint = 1;
+		else TripDataPoint ++;
+		if( TripDataPoint > 10 ) TripDataPoint = 1;
+	
+		I2CA_WriteData(ADDR_24LC32, EPROM_ADDR_TRIP_POINT, TripDataPoint);
+		TripBaseAddr = TRIP_BACKUP_ADDR + TripDataPoint * 100;
+		write_code_2_eeprom( TripBaseAddr+ 0, u32data);
+		write_code_2_eeprom( TripBaseAddr+ 4, u32data);
+		write_code_2_eeprom( TripBaseAddr+ 8, u32data);
+		write_code_2_eeprom( TripBaseAddr+ 12, u32data);
+		write_code_2_eeprom( TripBaseAddr+16, u32data);
+		strncpy(str," NO TRIP DATA       ",20);
+		WriteTripString( TripBaseAddr+40,str);
+	}
+	EepromSaveFlag = 0;
+	load_sci_tx_mail_box("CLEAR COMPLETE !!   ");
+}
+
+void tripProc()
+{
+    int cmd,temp;
+    float ref_in0;
+    float dbtemp;
+    char str[30]={0};
+
+    gMachineState = STATE_TRIP;
+	GATE_DRIVER_CLEAR;
+	MAIN_CHARGE_OFF;
+	ePwmPortOff();
+    load_scia_tx_mail_box("\nTRIP\t"); delay_msecs(20);
+    load_scia_tx_mail_box(TripInfoNow.MSG); delay_msecs(20);
+
+    snprintf( str,12,"\nCODE=%3d",TripInfoNow.CODE)    ;
+    load_scia_tx_mail_box(str);delay_msecs(20);
+
+    dbtemp = TripInfoNow.RPM;
+    temp = (int)(floor(dbtemp +0.5));
+    snprintf( str,13,"\tFq=%3d[hz]",temp);
+    load_scia_tx_mail_box(str); delay_msecs(20);
+
+    dbtemp = TripInfoNow.VDC;
+    temp = (int)(floor(dbtemp +0.5));
+    snprintf( str,13,"\tVDC =%4d",temp);
+    load_scia_tx_mail_box(str); delay_msecs(20);
+
+    dbtemp = TripInfoNow.CURRENT;
+    temp = (int)(floor(dbtemp +0.5));
+    snprintf( str,13,"\tI1  =%4d ",temp);
+    load_scia_tx_mail_box(str); delay_msecs(20);
+
+    dbtemp = TripInfoNow.DATA;
+    temp = (int)(floor(dbtemp +0.5));
+    snprintf( str,13," \tDATA=%4d\n",temp);
+    load_scia_tx_mail_box(str); delay_msecs(20);
+	/*
+// start input 이 되어 있는 상태에서 트립이 발생한다. 일반적으로
+// - 이때 다시 스톱을 하고 시작을
+// 다시 스톱 하면 리셋이 된다.
+// 리셋이 되고 있다는 신호를 줘야 한다.
+// - 초기 충전 릴레이?
+//	트립과 동시에 충전 릴레이는 off가 된다.
+// 리모트 리셋도 가능하다.
+*/
+	while( RUN_INPUT == 0 ){
+        get_command( & cmd, & ref_in0);
+//        monitor_proc();
+	    Nop();
+	}
+	delay_msecs(100);
+	while( RUN_INPUT){
+        get_command( & cmd, & ref_in0);
+//        monitor_proc();
+        if(cmd == CMD_READ_ALL ){
+            readAllCodes();
+        }
+        Nop();
+	}
+	while( RUN_INPUT==0){
+        get_command( & cmd, & ref_in0);
+//        monitor_proc();
+        if(cmd == CMD_READ_ALL ){
+            readAllCodes();
+        }
+	    Nop();
+	}
+
+	gMachineState = STATE_POWER_ON; Nop();
+    asm (" .ref _c_int00");     // Branch to start of boot.asm in RTS library
+    asm (" LB _c_int00");       // Branch to start of boot.asm in RTS library
+}
+//--- end of Trip_proc.c

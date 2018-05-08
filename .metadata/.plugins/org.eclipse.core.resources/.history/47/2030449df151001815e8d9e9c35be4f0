@@ -1,0 +1,293 @@
+#ifndef		__VARIABLES_
+#define		__VARIABLES_
+
+
+extern float we;
+
+extern float   theta;
+extern int adcIgbtTemperature;
+extern float Freq_ref;
+extern float   Freq_out;
+extern float inv_motor_rate_hz;
+extern float Vdc;
+extern float    Is_max;                 // �ִ� �������
+
+extern float sensVdc;
+extern float sensIu;
+extern float sensIv;
+
+extern float lpfVdc;
+extern float lpfIu;
+extern float lpfIv;
+extern float rmsIu;
+extern float rmsIv;
+
+extern float lpfVdcCutoffFreq;
+extern float lpfVdcIn[3];
+extern float lpfVdcOut[3];
+extern float lpfVdcK[4];
+
+extern float lpfIrmsCutOffRreq;
+extern float lpfIuIn[3];
+extern float lpfIuOut[3];
+extern float lpfIuRmsK[4];
+
+extern float lpfIvIn[3];
+extern float lpfIvOut[3];
+extern float lpfIvRmsK[4];
+
+extern unsigned int Fault_Code;
+
+extern int init_charge_flag;
+
+extern int scib_rx_msg_flag;
+extern int scic_rx_msg_flag;
+
+extern float analog_ref_a;
+extern float analog_ref_b;
+
+//*******************************************************
+// ���� ���� 
+//*******************************************************
+extern float y1_data[GRAPH_NUMBER];
+extern float y2_data[GRAPH_NUMBER];
+
+extern float Vdc_factor;			// 2010 01 13
+extern float Vdc_calc_offset;		// 2010 01 13 for Vdc calc
+
+extern float ref_time;	// 2009.10.28
+
+extern CODE_INFO code_inform;
+extern union PROTECT_FLAG protect_reg;
+
+// codes
+// --- digital_inout.h
+extern union DIGITAL_OUT_FUNC relay_flag;
+extern union DIGITAL_FUNCTION func_flag;	// ������ �Է��� ����� �����Ѵ�.
+
+extern int scic_rx_start_addr;
+extern int scic_rx_end_addr;
+
+extern int scic_tx_start_addr;
+extern int scic_tx_end_addr;
+
+//-- use in udd_timer_irq
+extern int terminal_input_state;
+extern char TripMessage[25];
+// PWM
+extern float	DutyRatio[3];
+extern Uint16 DutyCount[3];
+
+// �ð� �� �ε���
+extern float 	gfRunTime;
+extern float	Ts;
+extern float	inv_Ts;
+extern int timer0_count;
+
+// Ref.
+extern float	reference_in;
+extern float	reference_out;
+
+// Reference Func.
+extern float 	IncScanRef;
+extern float	IncRef;
+extern float	DecRef;
+
+// Sci.c
+
+extern char gStr1[50];
+extern char gStr2[10];
+
+extern int gSciInFlag;
+extern int scia_rx_msg_flag;
+
+extern char gSciaRxBuf[NUM_SCI_RX_BUF+1];
+extern char gSciaTxBuf[NUM_SCI_TX_BUF+1];
+
+extern int	gSciaTxInPoint;
+extern int	gSciaTxOutPoint;
+extern int	gSciaTxEndFlag;
+
+extern int giSciCmdFunction;
+extern int giSciCmdAddr;
+extern float gdouSciCmdData;
+
+extern int gMachineState;
+
+extern int gAutoTuningSelect;		// �޴���� ���� ���� ���� �ϴ� �� 
+
+extern int gControlMode;
+
+extern unsigned long gulExcitTimeMsec;		// �ʱ� ���� �ð� 0.25�� 
+
+	// Ref. Func
+
+extern int gDeChargeFlag;
+extern int	gPWMTripCode;
+
+extern int adc_result[6];
+
+extern int adcIu;
+extern int adcIv;
+extern int adcVdc;
+extern int adcIgbtTemperature;
+extern int adcExSensor;
+extern int adcCmdAnalog;
+
+extern TRIP_INFO TripInfo;
+extern TRIP_INFO TripInfoNow;
+
+extern int gTripFlag;
+extern float AnaCmdReference;
+extern Uint16	MAX_PWM_CNT;
+extern char MonitorMsg[25];
+extern int gRunFlag;
+extern int gTripSaveFlag;
+extern float OverCurLimit;
+extern int EepromSaveFlag;
+extern int Flag_TripDataBackup;
+
+
+extern float	inv_code_dac_scale_ch1;
+extern float	inv_code_dac_scale_ch2;
+extern float	inv_code_dac_scale_ch3;
+extern float	inv_code_dac_scale_ch4;
+
+//============================================
+//   CODE variable 
+//============================================
+extern float   codeMotorDirection;     //
+extern float   codeAccelTime1;         //
+extern float   codeDecelTime1;         //
+extern float   codeMotorCtrlMode;      //
+extern float   codeSpeed1;             // 5
+extern float   codeSpeed2;             // 6
+extern float   codeSetVdc;             // 7
+extern float   codeProtectOff;         // 8
+
+extern float   codeRatePower;           // 10
+extern float   codeRateVolt;            // 11
+extern float   codeRateCurrent;         // 12
+extern float   codeRateHz;              // 13
+extern float   codeRateRpm;             // 14
+extern float   codeMotorPole;           // 15
+extern float   codeRateEffiency;        // 16
+extern float   codePwmFreq;            // 17
+
+extern float   codeIaOffset;           // 20
+extern float   codeIbOffset;           // 21
+
+///////////////////////////////////
+// extern int code_protect_inhibit_on;		// 30
+extern float codeProtectOff;
+extern int code_protect_uv_off;
+extern int code_protect_ov_off;
+extern int code_protect_Iadc_off;
+extern int code_protect_over_I_off;
+extern int code_protect_IGBT_off;
+extern int code_protect_ex_trip_off;
+///////////////////////////////////
+
+// group 1
+extern int code_use_binary_input;
+extern float code_speed1;			//
+extern float code_speed2;			//
+extern float code_speed3;			//
+extern float code_speed4;			//
+extern float code_speed5;			//
+
+// group2
+
+extern float analog_cmd_in_zero1;		// 200
+extern float analog_cmd_in_span1;		// 201
+extern float analog_cmd_in_zero2;		// 202
+extern float analog_cmd_in_span2;		// 203
+extern float analog_out_select1;		// 204
+
+extern int code_dac_select_ch1;		// 213	
+extern float code_dac_scale_ch1;		//214
+extern float code_dac_offset_ch1;		// 215
+
+extern int code_dac_select_ch2;		// 216
+extern float code_dac_scale_ch2;		//217
+extern float code_dac_offset_ch2;		//218
+
+extern int code_dac_select_ch3;		// 219
+extern float code_dac_scale_ch3;		// 220
+extern float code_dac_offset_ch3;		// 221
+
+extern int code_dac_select_ch4;		// 222
+extern float code_dac_scale_ch4;		// 223
+extern float code_dac_offset_ch4;		// 224
+
+// group3
+extern float over_current_level;		// 300
+extern float over_volt_set;			// 301
+extern float under_volt_set;			// 302
+extern float over_speed_level;		// 303
+extern float e_thermal_level;			// 304
+extern float pre_charge_time;			// 305
+extern float Is_Max_Coeff;			// 306
+extern float over_I_time;				// 307
+
+extern float code_Vdc_scaler;			// 308  2011.0613
+extern float code_Vdc_offseter;		// 309
+
+extern float code_adc_vdc_low;			// 310
+extern float code_adc_vdc_high;		// 311
+
+extern float code_Vdc_calc_low;		// 312
+extern float code_Vdc_calc_high;		// 313
+
+// group5
+extern float I_sense_value;			// 500
+extern float u_phase_I_sense_span;		// 502
+extern float v_phase_I_sense_span;		// 504
+extern float vdc_sense_zero;			// 505
+extern float vdc_sense_span;			// 506
+
+extern int adc_u_offset;				// 510
+extern int adc_v_offset;				// 511
+extern int adc_R_offset;				// 512
+extern int adc_S_offset;				// 513
+
+extern float R_phase_I_sense_span;		// 515
+extern float S_phase_I_sense_span;		// 517
+
+// group6
+extern float VF_DeadTimeGain;
+extern float VF_ExcitationTime;
+extern float VF_Fs_Coeff;
+extern float VF_Freq_TrqBoost;
+extern float VF_Vs_Coeff_TrqBoost;
+extern float VF_Rs_ThermalCoeff;
+extern float VF_IR_Comp_FilterPole;
+extern float VF_Slip_Comp_FilterPole;
+extern float VF_Rs;
+
+extern float Freq_rat;
+extern float inv_Freq_rat;
+
+extern float Vs_abc_ref[3];
+extern float Vs_abc[3];
+extern float Us_dq[2];
+extern float Vs_dq[2];
+extern float Is_dq[2];
+extern float Is_DQ[2];
+
+extern float P_pair;
+extern float inv_P_pair;
+extern float Kt;
+extern float inv_Kt;
+extern float Te_rat;
+extern float inv_Te_rat;
+extern float S_lin;
+extern float S_rat;
+extern float Fs_rat;
+
+extern float rpm_ref;
+extern float wr_rat;
+extern float rpm_Coeff;
+
+#endif
+

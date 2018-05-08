@@ -1,0 +1,8 @@
+-------------------------  2834x_boot_rom.pjt - Debug  -------------------------
+[Init_Boot.asm] "C:\Program Files\C2000 Code Generation Tools 5.0.1\bin\cl2000" -g -q -pdr -fr"C:/Data/2824x/2834x_bootrom/source/Debug" -i"../include" -i"../DSP2834x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "Init_Boot.asm"
+
+[Linking...] "C:\Program Files\C2000 Code Generation Tools 5.0.1\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

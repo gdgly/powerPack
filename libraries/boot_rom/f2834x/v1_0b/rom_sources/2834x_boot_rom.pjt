@@ -1,0 +1,57 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectName="f2812_boot_rom"
+ProjectDir="C:\tidcs\c28\boot_rom\2834x\2834x_boot_rom_v1b\"
+ProjectType=Executable
+CPUFamily=TMS320C28XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="DSP2834x_headers\source\DSP2834x_GlobalVariableDefs.c"
+Source="loaders\CAN_Boot.c"
+Source="loaders\FPUmathTables.ASM"
+Source="loaders\I2C_Boot.c"
+Source="loaders\Init_Boot.asm"
+Source="loaders\IQmathTables.ASM"
+Source="loaders\IQmathTables2.ASM"
+Source="loaders\ITRAPIsr.asm"
+Source="loaders\MCBSP_Boot.c"
+Source="loaders\Parallel_Boot.c"
+Source="loaders\ReservedSpace.asm"
+Source="loaders\SCI_Boot.c"
+Source="loaders\SelectMode_Boot.c"
+Source="loaders\Shared_Boot.c"
+Source="loaders\SPI_Boot.c"
+Source="loaders\SysCtrl_Boot.c"
+Source="loaders\ti_test.asm"
+Source="loaders\TI_Test_F.c"
+Source="loaders\Vectors_Boot.asm"
+Source="loaders\XINTF_Boot.c"
+Source="loaders\XINTF_Parallel_Boot.c"
+Source="DSP2834x_headers\cmd\DSP2834x_Headers_nonBIOS.cmd"
+Source="lnk\TMS320x2834x_boot_rom_lnk.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -q -pdr -fr"C:\tidcs\c28\boot_rom\2834x\2834x_boot_rom_v1b\Debug" -i"../include" -i"../DSP2834x_headers\include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28
+
+["Compiler" Settings: "Release"]
+Options=-q -o3 -fr"C:\tidcs\c28\boot_rom\2834x\2834x_boot_rom_v1b\Release" -d"LARGE_MODEL" -ml -v28
+
+["DspBiosBuilder" Settings: "Debug"]
+Options=-v28
+
+["DspBiosBuilder" Settings: "Release"]
+Options=-v28
+
+["Linker" Settings: "Debug"]
+Options=-q -e_InitBoot -m"boot_rom.map" -o".\Debug\TMS320x2834x_boot_rom.out" -stack0x200 -w -x
+
+["Linker" Settings: "Release"]
+Options=-q -c -o".\Release\f2812_boot_rom.out" -x
+

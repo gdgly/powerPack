@@ -1,0 +1,130 @@
+#include	<header.h>
+#include	<extern.h>
+
+#if MOTOR_CONTROL
+
+#define	Vdc_MIN						10.0
+#define	inv_Vdc_MIN					0.1
+
+// space vector pwm
+// Input    :  Vs_dq[ds], Vs_dq[qs]
+// Output 	: DutyRatio[u], DutyRatio[v], DutyRatio[w]
+
+void SpaceVectorModulation( float *Vs_dq)
+{
+	unsigned sector;
+	float	Vx,Vy;
+	float 	Dx,Dy,Dxy,Dz;
+	float	inv_Vdc;
+
+	if (Vs_dq[qs]>=0) {
+		if (fabs(0.57735*Vs_dq[qs])<fabs(Vs_dq[ds])){
+			if (Vs_dq[ds]>=0){
+				sector=1; Vx=Vs_dq[ds]-0.57735*Vs_dq[qs];	Vy=1.154701*Vs_dq[qs];	
+			}
+			else{
+				sector=3; Vx=1.154701*Vs_dq[qs]; Vy=-(Vs_dq[ds]+0.57735*Vs_dq[qs]); 
+			}		
+		}
+		else{
+				sector=2; Vx=Vs_dq[ds]+0.57735*Vs_dq[qs]; Vy=-Vs_dq[ds]+0.57735*Vs_dq[qs];
+		}
+	}
+	else 
+	{
+		if  (fabs(0.57735*Vs_dq[qs])<fabs(Vs_dq[ds]))
+		{
+			if (Vs_dq[ds]>=0){
+				sector=6;	Vx=-1.154701*Vs_dq[qs];	Vy=Vs_dq[ds]+0.57735*Vs_dq[qs];
+			}
+			else{
+				sector=4; Vx=0.57735*Vs_dq[qs]-Vs_dq[ds]; Vy=-1.154701*Vs_dq[qs];
+			}
+		}
+		else{
+				sector=5; Vx=-Vs_dq[ds]-0.57735*Vs_dq[qs]; Vy=Vs_dq[ds]-0.57735*Vs_dq[qs];
+		}
+	}
+	
+	if (Vdc>Vdc_MIN)
+	{
+		inv_Vdc = 1.0 / Vdc;
+		Dx = 1.5* Vx * inv_Vdc;		// Maximum available voltage = 2.0*Vdc/3.0 
+		Dy = 1.5 *Vy * inv_Vdc;						
+		Dxy= Dx+Dy;
+	}
+	else
+	{
+		Dx=1.5*Vx*inv_Vdc_MIN;		// Maximum available voltage = 2.0*Vdc/3.0 
+		Dy=1.5*Vy*inv_Vdc_MIN;						
+		Dxy=Dx+Dy;
+	}
+
+	if (Dxy>=1.0)
+	{
+		if (Dx>Dy)	{ Dx=Dx/Dxy; Dy=1.0-Dx; }
+		else		{ Dy=Dy/Dxy; Dx=1.0-Dy;	}
+
+		Dxy=1.0;	Dz=0;
+	}
+	else 	Dz=0.5*(1.0-Dxy);
+
+	// ���ͺ��� ��Ƽ���� ����Ѵ�.
+	switch (sector)
+	{
+		case 1 :	DutyRatio[u]=Dxy+Dz;	DutyRatio[v]=Dy+Dz; 	DutyRatio[w]=Dz;		break;
+		case 2 :	DutyRatio[u]=Dx+Dz; 	DutyRatio[v]=Dxy+Dz; 	DutyRatio[w]=Dz;		break;
+		case 3 :	DutyRatio[u]=Dz; 		DutyRatio[v]=Dxy+Dz; 	DutyRatio[w]=Dy+Dz; 	break;
+		case 4 :	DutyRatio[u]=Dz; 		DutyRatio[v]=Dx+Dz; 	DutyRatio[w]=Dxy+Dz;	break;
+		case 5 :	DutyRatio[u]=Dy+Dz; 	DutyRatio[v]=Dz; 		DutyRatio[w]=Dxy+Dz;	break;
+		case 6 :	DutyRatio[u]=Dxy+Dz; 	DutyRatio[v]=Dz; 		DutyRatio[w]=Dx+Dz;		break;
+	}
+	DutyCount[u] = (Uint16)(guiEpwmPeriodCount * DutyRatio[u] );
+	DutyCount[v] = (Uint16)(guiEpwmPeriodCount * DutyRatio[v] );
+	DutyCount[w] = (Uint16)(guiEpwmPeriodCount * DutyRatio[w] );
+}  
+
+
+#define Dt_us						4
+#define inv_Min_Isw 				20
+	
+void VoltageEstimation()
+{
+    float   Dd;
+    float   T_d;
+
+	T_d=1.0e-6*Dt_us;
+	Dd=T_d*inv_Ts;	
+
+//--- U phase		
+	sgn_Is[as]=Is_abc[as]*inv_Min_Isw;							//������ ũ�⿡ ���� ���� Ÿ�Ӱ��  
+	if (sgn_Is[as]>1.0)			sgn_Is[as]=1.0;
+	else if (sgn_Is[as]<-1.0)	sgn_Is[as]=-1.0;
+	
+	Vs_abc_ref[as] = ( DutyRatio[u] - 0.5)*Vdc;
+	Vs_abc[as]=Vs_abc_ref[as] - sgn_Is[as]*Dd*Vdc;
+
+//--- V phase	
+	sgn_Is[bs]=Is_abc[bs]*inv_Min_Isw;							//������ ũ�⿡ ���� ���� Ÿ�Ӱ��  
+	if (sgn_Is[bs]>1.0)			sgn_Is[bs]=1.0;
+	else if (sgn_Is[bs]<-1.0)	sgn_Is[bs]=-1.0;
+
+	Vs_abc_ref[bs] = ( DutyRatio[v] - 0.5)*Vdc;
+	Vs_abc[bs]=Vs_abc_ref[bs] - sgn_Is[bs]*Dd*Vdc;
+
+//--- W phase	
+	sgn_Is[cs]=Is_abc[cs]*inv_Min_Isw;							//������ ũ�⿡ ���� ���� Ÿ�Ӱ��  
+	if (sgn_Is[cs]>1.0)			sgn_Is[cs]=1.0;
+	else if (sgn_Is[cs]<-1.0)	sgn_Is[cs]=-1.0;
+
+	Vs_abc_ref[cs] = ( DutyRatio[w] - 0.5)*Vdc;
+	Vs_abc[cs]=Vs_abc_ref[cs] - sgn_Is[cs]*Dd*Vdc;	
+
+	Vs_dq_ref[ds]=0.66666667*(Vs_abc_ref[as] - 0.5*Vs_abc_ref[bs] - 0.5*Vs_abc_ref[cs]);	// 2/3=0.666666667
+	Vs_dq_ref[qs]=0.57735027*(Vs_abc_ref[bs] - Vs_abc_ref[cs]);								// 1.0/sqrt(3.0)=0.57735027
+	Vs_dq[ds]=0.66666667*(Vs_abc[as] - 0.5*Vs_abc[bs] - 0.5*Vs_abc[cs]);					// 2/3=0.666666667
+	Vs_dq[qs]=0.57735027*(Vs_abc[bs] - Vs_abc[cs]);											// 1.0/sqrt(3.0)=0.57735027
+}
+#endif
+// end of file
+

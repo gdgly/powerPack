@@ -1,0 +1,48 @@
+------------------------  f2833x_boot_rom.pjt - Debug  ------------------------
+[DSP2833x_GlobalVariableDefs.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../../Debug.lkf" "DSP2833x_GlobalVariableDefs.c"
+
+[ADC_cal.asm] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "ADC_cal.asm"
+
+[CAN_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "CAN_Boot.c"
+
+[FPUmathTables.ASM] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "FPUmathTables.ASM"
+
+[I2C_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "I2C_Boot.c"
+
+[Init_Boot.asm] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "Init_Boot.asm"
+
+[IQmathTables.ASM] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "IQmathTables.ASM"
+
+[IQmathTables2.ASM] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "IQmathTables2.ASM"
+
+[ITRAPIsr.asm] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "ITRAPIsr.asm"
+
+[MCBSP_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "MCBSP_Boot.c"
+
+[Parallel_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "Parallel_Boot.c"
+
+[ReservedSpace.asm] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "ReservedSpace.asm"
+
+[SCI_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "SCI_Boot.c"
+
+[SelectMode_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "SelectMode_Boot.c"
+
+[Shared_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "Shared_Boot.c"
+
+[SPI_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "SPI_Boot.c"
+
+[SysCtrl_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "SysCtrl_Boot.c"
+
+[ti_test.asm] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "ti_test.asm"
+
+[Vectors_Boot.asm] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "Vectors_Boot.asm"
+
+[XINTF_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "XINTF_Boot.c"
+
+[XINTF_Parallel_Boot.c] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -g -q -pdr -fr"V:/a0322405_apps_view/c2000_apps/c28xx/collateral/Boot_ROM/2833x_bootrom/2833x_boot_rom/Debug" -i"../include" -i"../DSP2833x_headers/include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "XINTF_Parallel_Boot.c"
+
+[Linking...] "C:\Program Files\C2000 Code Generation Tools 5.0.0\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.
